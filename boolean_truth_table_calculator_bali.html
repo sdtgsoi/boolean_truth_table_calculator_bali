@@ -7,231 +7,365 @@
 :root{color-scheme:light;--bg:#f5f7fb;--panel:#fff;--ink:#182230;--muted:#637083;--line:#dce3ec;--accent:#315ee8;--accent2:#edf1ff;--good:#087f5b;--bad:#b42318}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1100px;margin:32px auto;padding:0 18px}.hero{margin-bottom:20px}.hero h1{font-size:clamp(24px,4vw,34px);margin:0 0 5px}.hero p{margin:0;color:var(--muted)}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 5px 18px #172b4d08}label{font-weight:650;display:block;margin-bottom:8px}.inputrow{display:flex;gap:10px;align-items:stretch}input[type=text]{width:100%;min-width:0;border:1px solid #b8c4d6;border-radius:10px;padding:13px 14px;font:16px ui-monospace,SFMono-Regular,Consolas,monospace;outline:none}input[type=text]:focus{border-color:var(--accent);box-shadow:0 0 0 3px #315ee81a}button{border:0;border-radius:10px;background:var(--accent);color:white;padding:11px 15px;font-weight:650;cursor:pointer}button.secondary{background:var(--accent2);color:#2448bd}button:hover{filter:brightness(.97)}
-.subtle{color:var(--muted);font-size:13px}.render{font-family:Cambria,"Times New Roman",serif;font-size:clamp(21px,3vw,29px);overflow-wrap:anywhere;min-height:38px;padding:10px 0;line-height:1.9}.render .over{position:relative;display:inline-block;text-decoration:none;padding-top:.11em;line-height:1.15;vertical-align:baseline}.render .over::before{content:"";position:absolute;left:0;right:0;top:.20em;border-top:1.5px solid currentColor;pointer-events:none}.render .op{padding:0 .12em;white-space:pre}.render .paren{color:#68758a}.status{font-size:13px;min-height:20px;margin-top:6px}.status.error{color:var(--bad)}.status.ok{color:var(--good)}.examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.examples button{font-size:13px;padding:7px 10px}.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{background:#f0f3f8;padding:5px 9px;border-radius:999px;font-size:12px;color:#48566a}.tablewrap{overflow:auto;margin-top:14px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;white-space:nowrap}th,td{padding:10px 13px;border-bottom:1px solid var(--line);text-align:center}th{background:#f4f6fa;font-size:13px;position:sticky;top:0}td:last-child,th:last-child{font-weight:750}tbody tr:hover{background:#f8faff}.one{color:var(--good)}.zero{color:var(--muted)}.kmap-wrap{overflow:auto;margin-top:14px;padding:4px 0 8px}.kmap-axes{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:8px 0 10px}.kmap-table{width:auto;min-width:0;margin:0 auto;border-collapse:separate;border-spacing:4px;white-space:nowrap}.kmap-table th,.kmap-table td{position:static;min-width:48px;padding:8px 10px;border:0;border-radius:7px;text-align:center}.kmap-table thead th{background:#e9edf5;color:#344054;font-size:12px;font-weight:700}.kmap-table .axis-corner{background:transparent;color:var(--muted);font-size:11px;min-width:70px}.kmap-table .row-code{background:#e9edf5;color:#344054;font-size:12px}.kmap-cell{background:#f0f3f8;border:1px solid #dce3ec!important;min-width:58px}.kmap-cell.one-cell{background:#d9f5e8;border-color:#87d6b4!important;color:#076747}.kmap-cell.zero-cell{color:#667085}.kmap-value{font-size:18px;font-weight:750;line-height:1.2}.kmap-minterm{display:block;font-size:10px;color:#667085;font-weight:500;margin-top:3px}.kmap-cell.one-cell .kmap-minterm{color:#26765a}.kmap-note{margin-top:10px}
+.subtle{color:var(--muted);font-size:13px}.render{font-family:Cambria,"Times New Roman",serif;font-size:clamp(21px,3vw,29px);overflow-wrap:anywhere;min-height:38px;padding:10px 0;line-height:1.9}.render .over{position:relative;display:inline-block;text-decoration:none;padding-top:.11em;line-height:1.15;vertical-align:baseline}.render .over::before{content:"";position:absolute;left:0;right:0;top:.20em;border-top:1.5px solid currentColor;pointer-events:none}.render .over .over{margin-top:.15em}.render .op{padding:0 .12em;white-space:pre}.render .paren{color:#68758a}.status{font-size:13px;min-height:20px;margin-top:6px}.status.error{color:var(--bad)}.status.ok{color:var(--good)}.examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.examples button{font-size:13px;padding:7px 10px}.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{background:#f0f3f8;padding:5px 9px;border-radius:999px;font-size:12px;color:#48566a}.tablewrap{overflow:auto;margin-top:14px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;white-space:nowrap}th,td{padding:10px 13px;border-bottom:1px solid var(--line);text-align:center}th{background:#f4f6fa;font-size:13px;position:sticky;top:0}td:last-child,th:last-child{font-weight:750}tbody tr:hover{background:#f8faff}.one{color:var(--good)}.zero{color:var(--muted)}.kmap-wrap{overflow:auto;margin-top:14px;padding:4px 0 8px}.kmap-axes{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:8px 0 10px}.kmap-table{width:auto;min-width:0;margin:0 auto;border-collapse:separate;border-spacing:4px;white-space:nowrap}.kmap-table th,.kmap-table td{position:static;min-width:48px;padding:8px 10px;border:0;border-radius:7px;text-align:center}.kmap-table thead th{background:#e9edf5;color:#344054;font-size:12px;font-weight:700}.kmap-table .axis-corner{background:transparent;color:var(--muted);font-size:11px;min-width:70px}.kmap-table .row-code{background:#e9edf5;color:#344054;font-size:12px}.kmap-cell{background:#f0f3f8;border:1px solid #dce3ec!important;min-width:58px}.kmap-cell.one-cell{background:#d9f5e8;border-color:#87d6b4!important;color:#076747}.kmap-cell.zero-cell{color:#667085}.kmap-value{font-size:18px;font-weight:750;line-height:1.2}.kmap-minterm{display:block;font-size:10px;color:#667085;font-weight:500;margin-top:3px}.kmap-cell.one-cell .kmap-minterm{color:#26765a}.kmap-note{margin-top:10px}
 .kmap-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.kmap-controls label{margin:0;font-size:13px;color:var(--muted);font-weight:600}.kmap-controls select{border:1px solid #c7d0df;border-radius:9px;background:white;color:var(--ink);padding:8px 10px;font:inherit;font-size:13px;max-width:100%}
 .kmap-axes{justify-content:space-between;gap:8px 22px}.kmap-axes b{color:#344054}.kmap-table th.axis-corner{min-width:100px;text-align:left;line-height:1.45}.kmap-table .code-head span,.kmap-table .row-code span{display:block;font-size:10px;font-weight:600;color:#667085;margin-bottom:2px}.kmap-table .code-head b,.kmap-table .row-code b{font-size:13px}
-.kmap-bracket{min-width:max-content;padding:7px 0 10px}.bracket-heading{font-size:13px;color:var(--muted);margin:3px 0 8px 0}.bracket-top{display:flex;flex-direction:column;gap:0;margin-bottom:5px}.top-rail-row{display:grid;grid-template-columns:var(--left-rail-width,44px) auto;column-gap:4px;align-items:start;height:34px}.top-rail-track{display:grid;align-items:start;column-gap:4px;grid-template-columns:repeat(var(--axis-count),58px);height:34px}.col-bracket{position:relative;display:block;grid-row:1;height:10px;margin-top:18px;border-top:2px solid #47798b;min-width:0}.col-bracket::before,.col-bracket::after{content:"";position:absolute;top:0;height:8px;border-left:2px solid #47798b}.col-bracket::before{left:0}.col-bracket::after{right:0}.col-bracket-label{position:absolute;left:50%;top:-19px;transform:translateX(-50%);font-size:13px;color:#344054;font-weight:700;white-space:nowrap;padding:0 3px;background:var(--panel)}.bottom-rail-row{padding-top:4px}.bottom-rail-track{display:grid;width:max-content;grid-template-columns:repeat(var(--axis-count),58px);grid-auto-columns:58px;column-gap:4px;height:29px}.col-bracket.bottom{margin-top:0;border-top:0;border-bottom:2px solid #47798b;height:10px;align-self:end}.col-bracket.bottom::before,.col-bracket.bottom::after{top:auto;bottom:0;border-left:2px solid #47798b}.col-bracket.bottom .col-bracket-label{top:auto;bottom:-20px}
-.bracket-body{display:flex;align-items:stretch;gap:4px}.row-bracket-rail{display:grid;grid-template-rows:repeat(var(--axis-count),58px);row-gap:4px;flex:0 0 var(--rail-width,36px);width:var(--rail-width,36px)}.row-bracket{position:relative;display:block;min-height:0}.row-bracket.left{border-left:2px solid #47798b}.row-bracket.right{border-right:2px solid #47798b}.row-bracket.left::before,.row-bracket.left::after,.row-bracket.right::before,.row-bracket.right::after{content:"";position:absolute;width:9px;height:0}.row-bracket.left::before,.row-bracket.left::after{left:0;border-top:2px solid #47798b}.row-bracket.right::before,.row-bracket.right::after{right:0;border-top:2px solid #47798b}.row-bracket::before{top:0}.row-bracket::after{bottom:0}.row-bracket-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:13px;font-weight:700;color:#344054;background:var(--panel);padding:1px 3px;line-height:1.1;white-space:nowrap}.row-bracket.left .row-bracket-label,.row-bracket.right .row-bracket-label{left:50%;right:auto}
-.bracket-cells{display:grid;grid-template-columns:repeat(var(--cols),58px);grid-template-rows:repeat(var(--rows),58px);gap:4px}.bracket-cell{height:58px;min-width:0;padding:7px 3px;border-radius:7px;border:1px solid #dce3ec;background:#f0f3f8;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}.bracket-cell.one-cell{background:#d9f5e8;border-color:#87d6b4;color:#076747}.bracket-cell.zero-cell{color:#667085}.bracket-cell .kmap-value{font-size:18px;line-height:1.2;font-weight:750}.bracket-cell .kmap-minterm{display:block;font-size:10px;color:#667085;font-weight:500;margin-top:3px}.bracket-cell.one-cell .kmap-minterm{color:#26765a}.bracket-explanation{font-size:12px;color:var(--muted);margin:10px 0 0 48px;max-width:700px}
-@media(max-width:600px){.kmap-axes{justify-content:flex-start}.kmap-table th.axis-corner{min-width:88px}.bracket-heading{margin-left:0}.top-rail-track{grid-template-columns:repeat(var(--axis-count),50px)}.bracket-cells{grid-template-columns:repeat(var(--cols),50px);grid-template-rows:repeat(var(--rows),50px)}.bracket-cell{height:50px;padding:4px 2px}.row-bracket-rail{grid-template-rows:repeat(var(--axis-count),50px)}.col-bracket-label{font-size:12px}.bracket-cell .kmap-value{font-size:16px}.bracket-explanation{margin-left:0}}@media(max-width:600px){.kmap-table{border-spacing:2px}.kmap-table th,.kmap-table td{padding:7px 6px;min-width:38px}.kmap-cell{min-width:42px}.kmap-value{font-size:16px}}.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-top:10px}.legend div{background:#f7f9fc;border-radius:8px;padding:9px 11px;font-size:13px}.legend code{font-weight:700;color:#263b76}.empty{padding:22px;color:var(--muted);text-align:center}footer{color:var(--muted);font-size:12px;text-align:center;padding:6px 0 25px}@media(max-width:600px){main{margin:18px auto}.panel{padding:15px}.inputrow{flex-direction:column}.inputrow button{width:100%}}
+.kmap-bracket{--cell:58px;min-width:max-content;padding:7px 0 10px}.bracket-heading{font-size:13px;color:var(--muted);margin:3px 0 8px 0}.bracket-top{display:flex;flex-direction:column;gap:0;margin-bottom:5px}.top-rail-row{display:grid;grid-template-columns:var(--left-rail-width,44px) auto;column-gap:4px;align-items:start;height:34px}.top-rail-track{display:grid;align-items:start;column-gap:4px;grid-template-columns:repeat(var(--axis-count),var(--cell));height:34px}.col-bracket{position:relative;display:block;grid-row:1;height:10px;margin-top:18px;border-top:2px solid #47798b;min-width:0}.col-bracket::before,.col-bracket::after{content:"";position:absolute;top:0;height:8px;border-left:2px solid #47798b}.col-bracket::before{left:0}.col-bracket::after{right:0}.col-bracket-label{position:absolute;left:50%;top:-19px;transform:translateX(-50%);font-size:13px;color:#344054;font-weight:700;white-space:nowrap;padding:0 3px;background:var(--panel)}.bottom-rail-row{padding-top:4px}.bottom-rail-track{display:grid;width:max-content;grid-template-columns:repeat(var(--axis-count),var(--cell));grid-auto-columns:var(--cell);column-gap:4px;height:29px}.col-bracket.bottom{margin-top:0;border-top:0;border-bottom:2px solid #47798b;height:10px;align-self:end}.col-bracket.bottom::before,.col-bracket.bottom::after{top:auto;bottom:0;border-left:2px solid #47798b}.col-bracket.bottom .col-bracket-label{top:auto;bottom:-20px}
+.bracket-body{display:flex;align-items:stretch;gap:4px}.row-bracket-rail{display:grid;grid-template-rows:repeat(var(--axis-count),var(--cell));row-gap:4px;flex:0 0 var(--rail-width,36px);width:var(--rail-width,36px)}.row-bracket{position:relative;display:block;min-height:0}.row-bracket.left{border-left:2px solid #47798b}.row-bracket.right{border-right:2px solid #47798b}.row-bracket.left::before,.row-bracket.left::after,.row-bracket.right::before,.row-bracket.right::after{content:"";position:absolute;width:9px;height:0}.row-bracket.left::before,.row-bracket.left::after{left:0;border-top:2px solid #47798b}.row-bracket.right::before,.row-bracket.right::after{right:0;border-top:2px solid #47798b}.row-bracket::before{top:0}.row-bracket::after{bottom:0}.row-bracket-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:13px;font-weight:700;color:#344054;background:var(--panel);padding:1px 3px;line-height:1.1;white-space:nowrap}.row-bracket.left .row-bracket-label,.row-bracket.right .row-bracket-label{left:50%;right:auto}
+.bracket-cells{display:grid;grid-template-columns:repeat(var(--cols),var(--cell));grid-template-rows:repeat(var(--rows),var(--cell));gap:4px}.bracket-cell{height:var(--cell);min-width:0;padding:7px 3px;border-radius:7px;border:1px solid #dce3ec;background:#f0f3f8;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}.bracket-cell.one-cell{background:#d9f5e8;border-color:#87d6b4;color:#076747}.bracket-cell.zero-cell{color:#667085}.bracket-cell .kmap-value{font-size:18px;line-height:1.2;font-weight:750}.bracket-cell .kmap-minterm{display:block;font-size:10px;color:#667085;font-weight:500;margin-top:3px}.bracket-cell.one-cell .kmap-minterm{color:#26765a}.bracket-explanation{font-size:12px;color:var(--muted);margin:10px 0 0 48px;max-width:700px}
+@media(max-width:600px){.kmap-axes{justify-content:flex-start}.kmap-table th.axis-corner{min-width:88px}.bracket-heading{margin-left:0}.kmap-bracket{--cell:50px}.bracket-cell{padding:4px 2px}.col-bracket-label{font-size:12px}.bracket-cell .kmap-value{font-size:16px}.bracket-explanation{margin-left:0}}@media(max-width:600px){.kmap-table{border-spacing:2px}.kmap-table th,.kmap-table td{padding:7px 6px;min-width:38px}.kmap-cell{min-width:42px}.kmap-value{font-size:16px}}.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-top:10px}.legend div{background:#f7f9fc;border-radius:8px;padding:9px 11px;font-size:13px}.legend code{font-weight:700;color:#263b76}.empty{padding:22px;color:var(--muted);text-align:center}footer{color:var(--muted);font-size:12px;text-align:center;padding:6px 0 25px}@media(max-width:600px){main{margin:18px auto}.panel{padding:15px}.inputrow{flex-direction:column}.inputrow button{width:100%}}
 </style>
 </head>
 <body><main>
-<header class="hero"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap"><div><h1>Boolean Expression Calculator</h1><p>Enter a Boolean expression to see its logic-symbol form and truth table update live.</p></div><label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px">Language <select id="language-mode" style="border:1px solid #c7d0df;border-radius:9px;background:white;padding:8px 10px;font:inherit"><option value="en" selected>English</option><option value="zh">中文</option></select></label></div></header>
+<header class="hero"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap"><div><h1 data-i18n="appTitle">布尔表达式计算器</h1><p data-i18n="tagline">输入布尔表达式，实时转换为逻辑符号，并生成完整真值表。</p></div><label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px">Language <select id="language-mode" style="border:1px solid #c7d0df;border-radius:9px;background:white;padding:8px 10px;font:inherit"><option value="en" selected>English</option><option value="zh">中文</option></select></label></div></header>
 <section class="panel">
-<label for="expr">布尔表达式</label><div class="inputrow"><input id="expr" type="text" spellcheck="false" autocomplete="off" value="(A and B) or not C" aria-describedby="hint"><button id="clear" class="secondary" type="button">清空</button></div>
-<div id="hint" class="subtle">变量可用 A、B、C…；也支持变量名如 A1、enable、carry_out，括号可改变优先级。</div>
-<div class="examples"><button type="button" class="secondary example" data-expr="(A and B) or not C">示例：AND / OR / NOT</button><button type="button" class="secondary example" data-expr="A xor B">示例：XOR</button><button type="button" class="secondary example" data-expr="!(A * B) + C">示例：符号混写</button><button type="button" class="secondary example" data-expr="A ⊕ B ⊕ C">示例：⊕</button><button type="button" class="secondary example" data-expr="A nand B or C">示例：NAND</button></div>
-<div class="subtle" style="margin-top:16px">符号化表达式（实时更新）</div><div id="pretty" class="render" aria-live="polite">...</div><div id="status" class="status" aria-live="polite"></div>
+<label for="expr" data-i18n="exprLabel">布尔表达式</label><div class="inputrow"><input id="expr" type="text" spellcheck="false" autocomplete="off" value="(A and B) or not C" aria-describedby="hint"><button id="clear" class="secondary" type="button" data-i18n="clearBtn">清空</button></div>
+<div id="hint" class="subtle" data-i18n="hint">变量可用 A、B、C…；也支持变量名如 A1、enable、carry_out，括号可改变优先级。</div>
+<div class="examples"><button type="button" class="secondary example" data-expr="(A and B) or not C" data-i18n="example1">示例：AND / OR / NOT</button><button type="button" class="secondary example" data-expr="A xor B" data-i18n="example2">示例：XOR</button><button type="button" class="secondary example" data-expr="!(A * B) + C" data-i18n="example3">示例：符号混写</button><button type="button" class="secondary example" data-expr="A ⊕ B ⊕ C" data-i18n="example4">示例：⊕</button><button type="button" class="secondary example" data-expr="A nand B or C" data-i18n="example5">示例：NAND</button></div>
+<div class="subtle" style="margin-top:16px" data-i18n="prettyLabel">符号化表达式（实时更新）</div><div id="pretty" class="render" aria-live="polite">…</div><div id="status" class="status" aria-live="polite"></div>
 </section>
-<section class="panel"><div class="toolbar"><div><strong>真值表</strong><div id="summary" class="subtle">输入表达式后自动生成</div></div><span id="rowcount" class="pill">— 行</span></div><div id="table" class="tablewrap"><div class="empty">等待表达式…</div></div></section>
-<section class="panel" id="kmap-panel"><div class="toolbar"><div><strong>卡诺图（Karnaugh Map）</strong><div id="kmap-summary" class="subtle">根据当前表达式自动绘制</div></div><div class="kmap-controls"><label for="kmap-mode">显示模式</label><select id="kmap-mode" aria-label="卡诺图显示模式"><option value="codes">变量分组 + 格雷码表头</option><option value="brackets">变量括号（参考图）</option></select><span id="kmap-size" class="pill">—</span></div></div><div id="kmap" class="kmap-wrap"><div class="empty">输入表达式以生成卡诺图</div></div><div class="subtle kmap-note">行、列均按格雷码顺序排列；每格显示函数值和最小项编号。卡诺图最多显示 6 个变量。</div></section>
-<section class="panel"><strong>支持的运算符</strong><div class="legend">
-<div><code>NOT</code>：not、!、~、¬、单引号后缀（A'）</div><div><code>AND</code>：and、&amp;、&amp;&amp;、*、·、∧</div><div><code>OR</code>：or、|、||、+、∨</div><div><code>XOR</code>：xor、^、⊕</div><div><code>NAND</code>：nand、↑</div><div><code>NOR</code>：nor、↓</div><div><code>XNOR / 等价</code>：xnor、↔、≡</div><div><code>隐式 AND</code>：AB、A(B+C) 等相邻项会按 AND 处理</div>
-</div><p class="subtle" style="margin-bottom:0">优先级：NOT → AND/NAND → XOR/XNOR → OR/NOR。大小写不敏感地识别 and/or/not 等运算文字；变量名称保留原样。真值表最多显示 12 个不同变量（4096 行），以避免浏览器卡顿。</p></section>
-<footer>纯本地网页 · 表达式不会上传到网络</footer>
+<section class="panel"><div class="toolbar"><div><strong data-i18n="truthTable">真值表</strong><div id="summary" class="subtle"></div></div><span id="rowcount" class="pill"></span></div><div id="table" class="tablewrap"></div></section>
+<section class="panel" id="kmap-panel"><div class="toolbar"><div><strong data-i18n="kmapTitle">卡诺图（Karnaugh Map）</strong><div id="kmap-summary" class="subtle"></div></div><div class="kmap-controls"><label for="kmap-mode" data-i18n="displayMode">显示模式</label><select id="kmap-mode" data-i18n-aria="kmapAria" aria-label="卡诺图显示模式"><option value="codes" data-i18n="modeCodes">变量分组 + 格雷码表头</option><option value="brackets" data-i18n="modeBrackets">变量括号（参考图）</option></select><span id="kmap-size" class="pill">—</span></div></div><div id="kmap" class="kmap-wrap"></div><div class="subtle kmap-note" data-i18n="kmapNote">行、列均按格雷码顺序排列；每格显示函数值和最小项编号（最小项按变量出现顺序编号）。卡诺图最多显示 6 个变量。</div></section>
+<section class="panel"><strong data-i18n="opsTitle">支持的运算符</strong><div class="legend">
+<div><code>NOT</code><span data-i18n="opNot">：not、!、~、¬、单引号后缀（A'）</span></div><div><code>AND</code><span data-i18n="opAnd">：and、&amp;、&amp;&amp;、*、·、∧</span></div><div><code>OR</code><span data-i18n="opOr">：or、|、||、+、∨</span></div><div><code>XOR</code><span data-i18n="opXor">：xor、^、⊕</span></div><div><code>NAND</code><span data-i18n="opNand">：nand、↑</span></div><div><code>NOR</code><span data-i18n="opNor">：nor、↓</span></div><div><code data-i18n="xnorLabel">XNOR / 等价</code><span data-i18n="opXnor">：xnor、↔、≡</span></div><div><code data-i18n="implicitLabel">隐式 AND</code><span data-i18n="opImplicit">：A B、A(B+C)、A'B 等相邻项会按 AND 处理（连写的 AB 视为一个变量名）</span></div>
+</div><p class="subtle" style="margin-bottom:0" data-i18n="precedenceNote">优先级：NOT → AND/NAND → XOR/XNOR → OR/NOR。大小写不敏感地识别 and/or/not 等运算文字；变量名称保留原样。常量 0 为假、1 为真。真值表最多显示 12 个不同变量（4096 行），以避免浏览器卡顿。</p></section>
+<footer data-i18n="footer">纯本地网页 · 表达式不会上传到网络</footer>
 </main>
 <script>
 (() => {
- const input = document.getElementById('expr'), pretty = document.getElementById('pretty'), status = document.getElementById('status'), table = document.getElementById('table'), summary = document.getElementById('summary'), rowcount = document.getElementById('rowcount');
- const kmap = document.getElementById('kmap'), kmapSummary = document.getElementById('kmap-summary'), kmapSize = document.getElementById('kmap-size'), kmapMode = document.getElementById('kmap-mode');
- const wordOps = new Set(['and','or','not','xor','nand','nor','xnor']);
- function tokenize(source) {
-   const s = source, tokens = []; let i=0;
-   while(i<s.length){
-     const c=s[i]; if(/\s/.test(c)){i++;continue;}
-     if(/[A-Za-z_$]/.test(c)){
-       let j=i+1; while(j<s.length && /[A-Za-z0-9_$]/.test(s[j]))j++;
-       const raw=s.slice(i,j), low=raw.toLowerCase();
-       if(wordOps.has(low)) tokens.push({type:'op',value:low,pos:i}); else tokens.push({type:'var',value:raw,pos:i}); i=j; continue;
-     }
-     if(/[0-9]/.test(c)){let j=i+1;while(j<s.length&&/[A-Za-z0-9_$]/.test(s[j]))j++;const raw=s.slice(i,j);tokens.push({type:'var',value:raw,pos:i});i=j;continue;}
-     const two=s.slice(i,i+2);
-     if(['&&','||','->'].includes(two)){tokens.push({type:'op',value:two,pos:i});i+=2;continue;}
-     const symbols={'!':'not','~':'not','¬':'not','*':'and','&':'and','·':'and','∧':'and','+':'or','|':'or','∨':'or','^':'xor','⊕':'xor','↑':'nand','↓':'nor','↔':'xnor','≡':'xnor','(':'(',' )':')',')':')',"'":'postnot'};
-     if(Object.prototype.hasOwnProperty.call(symbols,c)){const v=symbols[c];tokens.push({type:v==='('? 'lparen':v===')'?'rparen':v==='postnot'?'postnot':'op',value:v,pos:i});i++;continue;}
-     throw new Error(`无法识别字符“${c}”（位置 ${i+1}）`);
-   }
-   // Insert implicit AND between an expression-ending and expression-starting token.
-   const out=[]; const ends=t=>t && (t.type==='var'||t.type==='rparen'||t.type==='postnot'); const starts=t=>t && (t.type==='var'||t.type==='lparen'||(t.type==='op'&&t.value==='not'));
-   for(const t of tokens){const p=out[out.length-1];if(ends(p)&&starts(t))out.push({type:'op',value:'and',pos:t.pos,implicit:true});out.push(t);}
-   return out;
+ 'use strict';
+ const input=document.getElementById('expr'), pretty=document.getElementById('pretty'), statusEl=document.getElementById('status'), table=document.getElementById('table'), summary=document.getElementById('summary'), rowcount=document.getElementById('rowcount');
+ const kmap=document.getElementById('kmap'), kmapSummary=document.getElementById('kmap-summary'), kmapSize=document.getElementById('kmap-size'), kmapMode=document.getElementById('kmap-mode');
+ const languageMode=document.getElementById('language-mode');
+
+ /* ---------------- i18n: key → text. No DOM text scanning, no substring rewriting. ---------------- */
+ const MESSAGES={
+  zh:{
+   title:'布尔表达式与真值表计算器',appTitle:'布尔表达式计算器',tagline:'输入布尔表达式，实时转换为逻辑符号，并生成完整真值表。',
+   languageLabel:'语言 ',exprLabel:'布尔表达式',clearBtn:'清空',
+   hint:'变量可用 A、B、C…；也支持变量名如 A1、enable、carry_out，括号可改变优先级。',
+   example1:'示例：AND / OR / NOT',example2:'示例：XOR',example3:'示例：符号混写',example4:'示例：⊕',example5:'示例：NAND',
+   prettyLabel:'符号化表达式（实时更新）',truthTable:'真值表',autoGen:'输入表达式后自动生成',
+   kmapTitle:'卡诺图（Karnaugh Map）',kmapAutoGen:'根据当前表达式自动绘制',displayMode:'显示模式',kmapAria:'卡诺图显示模式',
+   modeCodes:'变量分组 + 格雷码表头',modeBrackets:'变量括号（参考图）',
+   kmapNote:'行、列均按格雷码顺序排列；每格显示函数值和最小项编号（最小项按变量出现顺序编号）。卡诺图最多显示 6 个变量。',
+   opsTitle:'支持的运算符',
+   opNot:'：not、!、~、¬、单引号后缀（A\'）',opAnd:'：and、&、&&、*、·、∧',opOr:'：or、|、||、+、∨',opXor:'：xor、^、⊕',
+   opNand:'：nand、↑',opNor:'：nor、↓',opXnor:'：xnor、↔、≡',xnorLabel:'XNOR / 等价',implicitLabel:'隐式 AND',
+   opImplicit:'：A B、A(B+C)、A\'B 等相邻项会按 AND 处理（连写的 AB 视为一个变量名）',
+   precedenceNote:'优先级：NOT → AND/NAND → XOR/XNOR → OR/NOR。大小写不敏感地识别 and/or/not 等运算文字；变量名称保留原样。常量 0 为假、1 为真。真值表最多显示 12 个不同变量（4096 行），以避免浏览器卡顿。',
+   footer:'纯本地网页 · 表达式不会上传到网络',
+   listSep:'、',emptyPrompt:'请输入表达式。',parseOk:'表达式解析成功',checkSyntax:'请检查表达式语法',cannotConvert:'无法转换',
+   summaryVars:'变量：{vars}；共 {n} 个变量',summaryNoVars:'无变量；表达式为常量',rowCount:'{n} 行',dashRows:'— 行',outputCol:'结果',
+   genTableFromExpr:'输入表达式以生成真值表',genKmapFromExpr:'输入表达式以生成卡诺图',kmapValidLater:'表达式有效后将显示卡诺图',
+   kmapTooManyVars:'变量数超过卡诺图显示范围',kmapNotSupported:'不支持',
+   kmapTooManyDetail:'当前有 {n} 个变量。为保证卡诺图清晰易读，卡诺图支持 1–6 个变量；真值表仍可正常显示。',
+   kmapSummary:'{n} 个变量 · {r} 个行变量 / {c} 个列变量 · 格雷码排列',
+   colVarsLabel:'列变量（左 → 右）：',rowVarsLabel:'行变量（上 → 下）：',rowVarsShort:'行变量：',colVarsShort:'列变量：',noneVars:'（无）',singleRow:'单行',
+   bracketHeading:'列变量：{vars}；上方括号标出各列变量取 1 的列，最后一个列变量标在图下方',
+   bracketExplanation:'上方、下方括号分别标出各列变量取 1 的列；左、右括号标出对应行变量取 1 的行。格子按格雷码排列，图的左右边缘与上下边缘也视为相邻。',
+   mintermShort:'最小项 m{m}',outputShort:'输出 {v}',textSep:'；',
+   errEmpty:'请输入一个布尔表达式。',errIncomplete:'表达式不完整：缺少操作数。',
+   errMissingRparen:'括号不匹配：缺少右括号 )。',errExtraRparen:'位置 {pos} 出现多余的右括号 )。',
+   errMissingOperand:'位置 {pos} 缺少操作数。',errUnparsable:'位置 {pos} 附近的表达式无法解析。',
+   errBadChar:'无法识别字符“{c}”（位置 {pos}）',errImplication:'暂不支持蕴含运算符“{op}”（位置 {pos}）',
+   errTooManyVars:'检测到 {n} 个变量，当前最多支持 12 个变量。',errBadOp:'不支持的运算符：{op}'
+  },
+  en:{
+   title:'Boolean Expression & Truth Table Calculator',appTitle:'Boolean Expression Calculator',tagline:'Enter a Boolean expression to see its logic-symbol form and truth table update live.',
+   languageLabel:'Language ',exprLabel:'Boolean expression',clearBtn:'Clear',
+   hint:'Use variables such as A, B, C, A1, enable, or carry_out. Parentheses control precedence.',
+   example1:'Example: AND / OR / NOT',example2:'Example: XOR',example3:'Example: mixed symbols',example4:'Example: ⊕',example5:'Example: NAND',
+   prettyLabel:'Symbolic expression (live preview)',truthTable:'Truth table',autoGen:'Generated automatically from the expression',
+   kmapTitle:'Karnaugh map',kmapAutoGen:'Generated automatically from the current expression',displayMode:'Display mode',kmapAria:'Karnaugh map display mode',
+   modeCodes:'Variable groups + Gray-code headers',modeBrackets:'Variable brackets (diagram style)',
+   kmapNote:'Rows and columns use Gray-code order. Each cell shows the output and minterm index (variables are numbered in order of first appearance). Karnaugh maps support up to 6 variables.',
+   opsTitle:'Supported operators',
+   opNot:' : not, !, ~, ¬, postfix apostrophe (A\')',opAnd:' : and, &, &&, *, ·, ∧',opOr:' : or, |, ||, +, ∨',opXor:' : xor, ^, ⊕',
+   opNand:' : nand, ↑',opNor:' : nor, ↓',opXnor:' : xnor, ↔, ≡',xnorLabel:'XNOR / equivalence',implicitLabel:'Implicit AND',
+   opImplicit:': Adjacent terms such as A B, A(B+C), and A\'B imply AND (AB without a separator is one variable name)',
+   precedenceNote:'Precedence: NOT → AND/NAND → XOR/XNOR → OR/NOR. Operator words are case-insensitive; variable names are preserved. Literals 0 (false) and 1 (true) are constants. The truth table supports up to 12 variables (4,096 rows).',
+   footer:'Runs locally · expressions are never uploaded',
+   listSep:', ',emptyPrompt:'Please enter an expression.',parseOk:'Expression parsed successfully',checkSyntax:'Check the expression syntax',cannotConvert:'Unable to convert',
+   summaryVars:'Variables: {vars}; total: {n} variables',summaryNoVars:'No variables; the expression is constant',rowCount:'{n} rows',dashRows:'— rows',outputCol:'Output',
+   genTableFromExpr:'Enter an expression to generate the truth table',genKmapFromExpr:'Enter an expression to generate the Karnaugh map',kmapValidLater:'The Karnaugh map will appear when the expression is valid',
+   kmapTooManyVars:'Too many variables for the Karnaugh map',kmapNotSupported:'Not supported',
+   kmapTooManyDetail:'There are {n} variables. For readability, the Karnaugh map supports 1–6 variables; the truth table is still available.',
+   kmapSummary:'{n} variables · {r} row variables / {c} column variables · Gray-code order',
+   colVarsLabel:'Column variables (left → right): ',rowVarsLabel:'Row variables (top → bottom): ',rowVarsShort:'Row variables: ',colVarsShort:'Column variables: ',noneVars:'(none)',singleRow:'Single row',
+   bracketHeading:'Column variables: {vars}. Top brackets mark columns where each variable is 1; the last column variable is bracketed below the map',
+   bracketExplanation:'Top and bottom brackets mark columns where each column variable is 1; left and right brackets mark rows where the corresponding row variable is 1. Cells use Gray-code order; opposite edges are adjacent.',
+   mintermShort:'Minterm m{m}',outputShort:'output {v}',textSep:'; ',
+   errEmpty:'Please enter a Boolean expression.',errIncomplete:'Incomplete expression: missing operand.',
+   errMissingRparen:'Mismatched parentheses: missing closing ).',errExtraRparen:'Position {pos} has an extra closing parenthesis ).',
+   errMissingOperand:'Position {pos} is missing an operand.',errUnparsable:'Position {pos}: unable to parse expression near this position.',
+   errBadChar:'Unrecognized character “{c}” (position {pos})',errImplication:'Implication operator “{op}” is not supported (position {pos})',
+   errTooManyVars:'Detected {n} variables; up to 12 variables are supported.',errBadOp:'Unsupported operator: {op}'
+  }
+ };
+ let LANG='en';
+ function t(key,params){
+  let s=(MESSAGES[LANG]&&MESSAGES[LANG][key]!=null)?MESSAGES[LANG][key]:MESSAGES.en[key];
+  if(s==null)s=key;
+  if(params)for(const k of Object.keys(params))s=s.split('{'+k+'}').join(String(params[k]));
+  return s;
  }
+ const joinVars=vars=>vars.join(t('listSep'));
+
+ /* ---------------- tokenizer ---------------- */
+ const wordOps=new Set(['and','or','not','xor','nand','nor','xnor']);
+ function tokenize(source){
+  const s=source, tokens=[]; let i=0;
+  while(i<s.length){
+   const c=s[i]; if(/\s/.test(c)){i++;continue;}
+   if(/[A-Za-z_$]/.test(c)){
+    let j=i+1; while(j<s.length&&/[A-Za-z0-9_$]/.test(s[j]))j++;
+    const raw=s.slice(i,j), low=raw.toLowerCase();
+    if(wordOps.has(low))tokens.push({type:'op',value:low,pos:i}); else tokens.push({type:'var',value:raw,pos:i});
+    i=j; continue;
+   }
+   if(/[0-9]/.test(c)){
+    let j=i+1; while(j<s.length&&/[A-Za-z0-9_$]/.test(s[j]))j++;
+    const raw=s.slice(i,j);
+    if(/^\d+$/.test(raw))tokens.push({type:'const',value:parseInt(raw,10)!==0,raw,pos:i});
+    else tokens.push({type:'var',value:raw,pos:i});
+    i=j; continue;
+   }
+   const two=s.slice(i,i+2);
+   if(two==='->')throw new Error(t('errImplication',{op:'->',pos:i+1}));
+   if(two==='&&'||two==='||'){tokens.push({type:'op',value:two,pos:i});i+=2;continue;}
+   if(c==='→'||c==='⇒')throw new Error(t('errImplication',{op:c,pos:i+1}));
+   const symbols={'!':'not','~':'not','¬':'not','*':'and','&':'and','·':'and','∧':'and','+':'or','|':'or','∨':'or','^':'xor','⊕':'xor','↑':'nand','↓':'nor','↔':'xnor','≡':'xnor','(':'(',')':')',"'":'postnot'};
+   if(Object.prototype.hasOwnProperty.call(symbols,c)){const v=symbols[c];tokens.push({type:v==='('?'lparen':v===')'?'rparen':v==='postnot'?'postnot':'op',value:v,pos:i});i++;continue;}
+   throw new Error(t('errBadChar',{c,pos:i+1}));
+  }
+  // Insert implicit AND between an expression-ending and expression-starting token.
+  const out=[];
+  const ends=tt=>tt&&(tt.type==='var'||tt.type==='rparen'||tt.type==='postnot'||tt.type==='const');
+  const starts=tt=>tt&&(tt.type==='var'||tt.type==='lparen'||tt.type==='const'||(tt.type==='op'&&tt.value==='not'));
+  for(const tt of tokens){const p=out[out.length-1];if(ends(p)&&starts(tt))out.push({type:'op',value:'and',pos:tt.pos,implicit:true});out.push(tt);}
+  return out;
+ }
+
+ /* ---------------- parser ---------------- */
  const prec={or:1,nor:1,'||':1,'|':1,'+':1,'∨':1,xor:2,'^':2,'⊕':2,xnor:2,and:3,nand:3,'&&':3,'&':3,'*':3,'·':3,not:4};
  function parse(source){
-   const ts=tokenize(source); if(!ts.length) throw new Error('请输入一个布尔表达式。');let p=0;const vars=[];
-   function peek(){return ts[p]}
-   function atom(){const t=peek();if(!t)throw new Error('表达式不完整：缺少操作数。');
-     if(t.type==='op'&&t.value==='not'){p++;return {type:'not',child:atom()};}
-     if(t.type==='var'){p++;if(!vars.includes(t.value))vars.push(t.value);return {type:'var',name:t.value};}
-     if(t.type==='lparen'){p++;const node=expr(1);if(!peek()||peek().type!=='rparen')throw new Error('括号不匹配：缺少右括号 )。');p++;return node;}
-     if(t.type==='rparen')throw new Error(`位置 ${t.pos+1} 出现多余的右括号 )。`);
-     throw new Error(`位置 ${t.pos+1} 缺少操作数。`);
+  const ts=tokenize(source); if(!ts.length)throw new Error(t('errEmpty'));
+  let p=0; const vars=[];
+  const peek=()=>ts[p];
+  function atom(){
+   const tt=peek(); if(!tt)throw new Error(t('errIncomplete'));
+   if(tt.type==='op'&&tt.value==='not'){p++;return {type:'not',child:atom()};}
+   if(tt.type==='const'){p++;return {type:'const',value:tt.value,raw:tt.raw};}
+   if(tt.type==='var'){p++;if(!vars.includes(tt.value))vars.push(tt.value);return {type:'var',name:tt.value};}
+   if(tt.type==='lparen'){p++;const node=expr(1);if(!peek()||peek().type!=='rparen')throw new Error(t('errMissingRparen'));p++;return node;}
+   if(tt.type==='rparen')throw new Error(t('errExtraRparen',{pos:tt.pos+1}));
+   throw new Error(t('errMissingOperand',{pos:tt.pos+1}));
+  }
+  function expr(min){
+   let left=atom();
+   while(peek()){
+    const tt=peek();
+    if(tt.type==='postnot'){p++;left={type:'not',child:left};continue;}
+    if(tt.type!=='op'||tt.value==='not')break;
+    const pr=prec[tt.value]||prec[({'||':'or','&&':'and'}[tt.value])];
+    if(!pr||pr<min)break;
+    p++;const right=expr(pr+1);
+    left={type:'bin',op:({'||':'or','&&':'and','|':'or','&':'and','*':'and','+':'or','^':'xor','∧':'and','∨':'or','·':'and','⊕':'xor','↑':'nand','↓':'nor','↔':'xnor','≡':'xnor'}[tt.value]||tt.value),left,right};
    }
-   function expr(min){let left=atom();
-     while(peek()){
-       const t=peek();if(t.type==='postnot'){p++;left={type:'not',child:left};continue;}
-       if(t.type!=='op'||t.value==='not')break;const pr=prec[t.value]||prec[({'||':'or','&&':'and'}[t.value])];if(!pr||pr<min)break;p++;const right=expr(pr+1);left={type:'bin',op:({'||':'or','&&':'and','|':'or','&':'and','*':'and','+':'or','^':'xor','∧':'and','∨':'or','·':'and','⊕':'xor','↑':'nand','↓':'nor','↔':'xnor','≡':'xnor'}[t.value]||t.value),left,right};
-     }return left;
-   }
-   const ast=expr(1);if(peek()){const t=peek();if(t.type==='rparen')throw new Error(`位置 ${t.pos+1} 出现多余的右括号 )。`);throw new Error(`位置 ${t.pos+1} 附近的表达式无法解析。`);}return {ast,vars};
+   return left;
+  }
+  const ast=expr(1);
+  if(peek()){const tt=peek();if(tt.type==='rparen')throw new Error(t('errExtraRparen',{pos:tt.pos+1}));throw new Error(t('errUnparsable',{pos:tt.pos+1}));}
+  return {ast,vars};
  }
- function evaluate(n, env){if(n.type==='var')return !!env[n.name];if(n.type==='not')return !evaluate(n.child,env);const a=evaluate(n.left,env),b=evaluate(n.right,env);switch(n.op){case'and':return a&&b;case'or':return a||b;case'xor':return a!==b;case'xnor':return a===b;case'nand':return !(a&&b);case'nor':return !(a||b);default:throw new Error('不支持的运算符：'+n.op);}}
- function nodePrec(n){if(n.type==='var')return 5;if(n.type==='not')return 4;return ({or:1,nor:1,xor:2,xnor:2,and:3,nand:3})[n.op]||1;}
+
+ /* ---------------- evaluation & symbolic rendering ---------------- */
+ function evaluate(n,env){
+  if(n.type==='const')return n.value;
+  if(n.type==='var')return !!env[n.name];
+  if(n.type==='not')return !evaluate(n.child,env);
+  const a=evaluate(n.left,env),b=evaluate(n.right,env);
+  switch(n.op){case'and':return a&&b;case'or':return a||b;case'xor':return a!==b;case'xnor':return a===b;case'nand':return !(a&&b);case'nor':return !(a||b);default:throw new Error(t('errBadOp',{op:n.op}));}
+ }
+ function nodePrec(n){if(n.type==='var'||n.type==='const')return 5;if(n.type==='not')return 4;return ({or:1,nor:1,xor:2,xnor:2,and:3,nand:3})[n.op]||1;}
  function render(n,parent=null,side=null){
-   if(n.type==='var')return `<span class="variable">${escapeHtml(n.name)}</span>`;
-   if(n.type==='not')return `<span class="over">${render(n.child)}</span>`;
-   // NAND/NOR/XNOR are rendered as the complement of AND/OR/XOR respectively.
-   const complemented=n.op==='nand'||n.op==='nor'||n.op==='xnor';
-   const baseOp=({nand:'and',nor:'or',xnor:'xor'})[n.op]||n.op;
-   const left=render(n.left,{op:baseOp,prec:nodePrec(n)},'left');
-   const right=render(n.right,{op:baseOp,prec:nodePrec(n)},'right');
-   const symbol={and:' * ',or:' + ',xor:' ⊕ '}[baseOp]||' ? ';
-   let core=`${left}<span class="op">${symbol}</span>${right}`;
-   if(complemented)core=`<span class="over">${core}</span>`;
-   if(parent){
-     const childPrec=nodePrec(n), parentPrec=parent.prec;
-     let need=childPrec<parentPrec;
-     if(childPrec===parentPrec && side==='right' && n.type==='bin'){
-       const associative=['and','or','xor'];
-       need=!(associative.includes(parent.op)&&n.op===parent.op);
-     }
-     if(need)core=`<span class="paren">(</span>${core}<span class="paren">)</span>`;
+  if(n.type==='const')return `<span class="variable">${escapeHtml(n.raw)}</span>`;
+  if(n.type==='var')return `<span class="variable">${escapeHtml(n.name)}</span>`;
+  if(n.type==='not')return `<span class="over" title="NOT" aria-label="NOT">${render(n.child)}</span>`;
+  // NAND/NOR/XNOR are rendered as the complement of AND/OR/XOR respectively.
+  const complemented=n.op==='nand'||n.op==='nor'||n.op==='xnor';
+  const baseOp=({nand:'and',nor:'or',xnor:'xor'})[n.op]||n.op;
+  const barTitle=({nand:'NAND',nor:'NOR',xnor:'XNOR'})[n.op]||'';
+  const left=render(n.left,{op:baseOp,prec:nodePrec(n)},'left');
+  const right=render(n.right,{op:baseOp,prec:nodePrec(n)},'right');
+  const symbol={and:' * ',or:' + ',xor:' ⊕ '}[baseOp]||' ? ';
+  let core=`${left}<span class="op">${symbol}</span>${right}`;
+  if(complemented)core=`<span class="over" title="${barTitle}" aria-label="${barTitle}">${core}</span>`;
+  if(parent){
+   const childPrec=nodePrec(n), parentPrec=parent.prec;
+   let need=childPrec<parentPrec;
+   if(childPrec===parentPrec&&side==='right'&&n.type==='bin'){
+    const associative=['and','or','xor'];
+    need=!(associative.includes(parent.op)&&n.op===parent.op);
    }
-   return core;
+   if(need)core=`<span class="paren">(</span>${core}<span class="paren">)</span>`;
+  }
+  return core;
  }
  function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+ /* ---------------- Karnaugh map ---------------- */
  // Gray-code order ensures adjacent K-map cells differ by exactly one bit.
  function grayCodes(bits){if(bits===0)return [''];return Array.from({length:2**bits},(_,i)=>(i^(i>>1)).toString(2).padStart(bits,'0'));}
- function runsWhereOne(codes, bitIndex){
-   const runs=[];let start=-1;
-   codes.forEach((code,i)=>{
-     const isOne=code[bitIndex]==='1';
-     if(isOne&&start<0)start=i;
-     if(!isOne&&start>=0){runs.push([start,i-1]);start=-1;}
-   });
-   if(start>=0)runs.push([start,codes.length-1]);
-   return runs;
+ function runsWhereOne(codes,bitIndex){
+  const runs=[];let start=-1;
+  codes.forEach((code,i)=>{
+   const isOne=code[bitIndex]==='1';
+   if(isOne&&start<0)start=i;
+   if(!isOne&&start>=0){runs.push([start,i-1]);start=-1;}
+  });
+  if(start>=0)runs.push([start,codes.length-1]);
+  return runs;
  }
- function drawKmap(ast, vars){
-   if(vars.length>6){kmap.innerHTML='<div class="empty">当前有 '+vars.length+' 个变量。为保证卡诺图清晰易读，卡诺图支持 1–6 个变量；真值表仍可正常显示。</div>';kmapSummary.textContent='变量数超过卡诺图显示范围';kmapSize.textContent='不支持';return;}
-   // Match the usual textbook convention: the first variables go on columns (A,B),
-   // the remaining variables go on rows (C,D). This also makes minterm numbering clear.
-   const colBits=Math.ceil(vars.length/2), rowBits=vars.length-colBits;
-   const colVars=vars.slice(0,colBits), rowVars=vars.slice(colBits);
-   const rowCodes=grayCodes(rowBits), colCodes=grayCodes(colBits);
-   const mode=kmapMode ? kmapMode.value : 'codes';
-   function makeCell(rc,cc){
-     const env={};
-     colVars.forEach((v,i)=>{env[v]=cc[i]==='1';});
-     rowVars.forEach((v,i)=>{env[v]=rc[i]==='1';});
-     const val=evaluate(ast,env);
-     const minterm=parseInt(vars.map(v=>env[v]?1:0).join(''),2);
-     const assignment=vars.map(v=>v+'='+(env[v]?1:0)).join(', ');
-     return {val,minterm,assignment};
+ function drawKmap(ast,vars){
+  if(vars.length>6){
+   kmap.innerHTML='<div class="empty">'+escapeHtml(t('kmapTooManyDetail',{n:vars.length}))+'</div>';
+   kmapSummary.textContent=t('kmapTooManyVars');kmapSize.textContent=t('kmapNotSupported');return;
+  }
+  // Convention: the first variables go on columns (A,B), the remaining on rows (C,D).
+  const colBits=Math.ceil(vars.length/2), rowBits=vars.length-colBits;
+  const colVars=vars.slice(0,colBits), rowVars=vars.slice(colBits);
+  const rowCodes=grayCodes(rowBits), colCodes=grayCodes(colBits);
+  const mode=kmapMode?kmapMode.value:'codes';
+  function makeCell(rc,cc){
+   const env=Object.create(null);
+   colVars.forEach((v,i)=>{env[v]=cc[i]==='1';});
+   rowVars.forEach((v,i)=>{env[v]=rc[i]==='1';});
+   const val=evaluate(ast,env);
+   const minterm=vars.length?parseInt(vars.map(v=>env[v]?1:0).join(''),2):0;
+   const assignment=vars.map(v=>v+'='+(env[v]?1:0)).join(', ');
+   return {val,minterm,assignment};
+  }
+  const cellTitle=cell=>[t('mintermShort',{m:cell.minterm}),cell.assignment,t('outputShort',{v:cell.val?1:0})].filter(Boolean).join(t('textSep'));
+  if(mode==='brackets'){
+   const railWidth=36;
+   const leftRailCount=rowVars.length>2?rowVars.length:(rowVars.length?1:0);
+   const leftRailWidth=leftRailCount?leftRailCount*railWidth+(leftRailCount-1)*4:0;
+   // All column variables are bracketed: all but the last above, the last one below.
+   const topVars=colVars.length>1?colVars.slice(0,-1):colVars;
+   const bottomVar=colVars.length>1?colVars[colVars.length-1]:null;
+   // Heading sits outside .kmap-bracket: its text must not stretch min-width:max-content.
+   let html='<div class="bracket-heading">'+escapeHtml(t('bracketHeading',{vars:joinVars(colVars)}))+'</div><div class="kmap-bracket"><div class="bracket-top">';
+   topVars.forEach(v=>{
+    const vi=colVars.indexOf(v), runs=runsWhereOne(colCodes,vi);
+    html+='<div class="top-rail-row" style="--left-rail-width:'+leftRailWidth+'px;column-gap:'+(leftRailCount?4:0)+'px"><div></div><div class="top-rail-track" style="--axis-count:'+colCodes.length+'">';
+    runs.forEach(([a,b])=>{html+='<span class="col-bracket" style="grid-column:'+(a+1)+'/'+(b+2)+'" title="'+escapeHtml(v+'=1')+'"><span class="col-bracket-label">'+escapeHtml(v)+'</span></span>';});
+    html+='</div></div>';
+   });
+   html+='</div><div class="bracket-body">';
+   function renderRowRail(v,vi,side){
+    const runs=runsWhereOne(rowCodes,vi);
+    let out='<div class="row-bracket-rail" style="--axis-count:'+rowCodes.length+';--rail-width:'+railWidth+'px">';
+    runs.forEach(([a,b])=>{out+='<span class="row-bracket '+side+'" style="grid-row:'+(a+1)+'/'+(b+2)+'" title="'+escapeHtml(v+'=1')+'"><span class="row-bracket-label">'+escapeHtml(v)+'</span></span>';});
+    return out+'</div>';
    }
-   if(mode==='brackets'){
-     const railWidth=36;
-     const leftRailCount=rowVars.length>2?rowVars.length:(rowVars.length?1:0);
-     const leftRailWidth=leftRailCount?leftRailCount*railWidth+(leftRailCount-1)*4:0;
-     let html='<div class="kmap-bracket"><div class="bracket-heading">列变量：<b>'+escapeHtml(colVars.join('、'))+'</b>；上方括号标出变量取 1 的列</div><div class="bracket-top">';
-     // Convention: A (first column variable) is bracketed above; B (second) below.
-     const topVars=colVars.length>1?colVars.slice(0,1):colVars;
-     topVars.forEach(v=>{
-       const vi=colVars.indexOf(v), runs=runsWhereOne(colCodes,vi);
-       html+='<div class="top-rail-row" style="--left-rail-width:'+leftRailWidth+'px;column-gap:'+(leftRailCount?4:0)+'px"><div></div><div class="top-rail-track" style="--axis-count:'+colCodes.length+'">';
-       runs.forEach(([a,b])=>{html+='<span class="col-bracket" style="grid-column:'+(a+1)+'/'+(b+2)+'" title="'+escapeHtml(v+'=1')+'"><span class="col-bracket-label">'+escapeHtml(v)+'</span></span>';});
-       html+='</div></div>';
-     });
-     html+='</div><div class="bracket-body">';
-     function renderRowRail(v,vi,side){
-       const runs=runsWhereOne(rowCodes,vi);
-       let out='<div class="row-bracket-rail" style="--axis-count:'+rowCodes.length+';--rail-width:'+railWidth+'px">';
-       runs.forEach(([a,b])=>{out+='<span class="row-bracket '+side+'" style="grid-row:'+(a+1)+'/'+(b+2)+'" title="'+escapeHtml(v+'=1')+'"><span class="row-bracket-label">'+escapeHtml(v)+'</span></span>';});
-       return out+'</div>';
-     }
-     if(rowVars.length>2) rowVars.forEach((v,vi)=>{html+=renderRowRail(v,vi,'left');});
-     else if(rowVars.length) html+=renderRowRail(rowVars[0],0,'left');
-     html+='<div class="bracket-cells" style="--cols:'+colCodes.length+';--rows:'+rowCodes.length+'">';
-     rowCodes.forEach(rc=>colCodes.forEach(cc=>{
-       const cell=makeCell(rc,cc);
-       html+='<div class="bracket-cell '+(cell.val?'one-cell':'zero-cell')+'" title="'+escapeHtml('最小项 m'+cell.minterm+'；'+cell.assignment+'；输出 '+(cell.val?1:0))+'"><div class="kmap-value">'+(cell.val?1:0)+'</div><span class="kmap-minterm">m'+cell.minterm+'</span></div>';
-     }));
-     html+='</div>';
-     if(rowVars.length===2) html+=renderRowRail(rowVars[1],1,'right');
-     // Close the horizontal flex row before adding B's bottom bracket, so it sits below the map, not at the right.
-     html+='</div>';
-     if(colVars.length>1){
-       const v=colVars[1], vi=1, runs=runsWhereOne(colCodes,vi);
-       html+='<div class="bottom-rail-row" style="margin-left:'+(leftRailWidth+4)+'px;width:max-content"><div class="bottom-rail-track" style="--axis-count:'+colCodes.length+';width:max-content">';
-       runs.forEach(([a,b])=>{html+='<span class="col-bracket bottom" style="grid-column:'+(a+1)+'/'+(b+2)+'" title="'+escapeHtml(v+'=1')+'"><span class="col-bracket-label">'+escapeHtml(v)+'</span></span>';});
-       html+='</div></div>';
-     }
-     html+='<div class="bracket-explanation">上方括号标出 A 等列变量取 1 的列，下方括号标出 B；左、右括号分别标出对应行变量取 1 的行。格子按格雷码排列，图的左右边缘与上下边缘也视为相邻。</div></div>'; 
-     kmap.innerHTML=html;
-   }else{
-     const rowLabel=rowVars.length?rowVars.join('、'):'（无）';
-     const colLabel=colVars.join('、');
-     let html='<div class="kmap-axes"><span>列变量（左 → 右）：<b>'+escapeHtml(colLabel)+'</b></span><span>行变量（上 → 下）：<b>'+escapeHtml(rowLabel)+'</b></span></div>';
-     html+='<table class="kmap-table"><thead><tr><th class="axis-corner">行变量：<b>'+escapeHtml(rowLabel)+'</b><br>列变量：<b>'+escapeHtml(colLabel)+'</b></th>'+colCodes.map(c=>'<th class="code-head"><span>'+escapeHtml(colLabel||'—')+'</span><b>'+(c||'—')+'</b></th>').join('')+'</tr></thead><tbody>';
-     rowCodes.forEach(rc=>{
-       html+='<tr><th class="row-code"><span>'+escapeHtml(rowLabel||'单行')+'</span><b>'+(rc||'—')+'</b></th>';
-       colCodes.forEach(cc=>{
-         const cell=makeCell(rc,cc);
-         html+='<td class="kmap-cell '+(cell.val?'one-cell':'zero-cell')+'" title="'+escapeHtml('最小项 m'+cell.minterm+'；'+cell.assignment+'；输出 '+(cell.val?1:0))+'"><div class="kmap-value">'+(cell.val?1:0)+'</div><span class="kmap-minterm">m'+cell.minterm+'</span></td>';
-       });
-       html+='</tr>';
-     });
-     html+='</tbody></table>';
-     kmap.innerHTML=html;
+   if(rowVars.length>2)rowVars.forEach((v,vi)=>{html+=renderRowRail(v,vi,'left');});
+   else if(rowVars.length)html+=renderRowRail(rowVars[0],0,'left');
+   html+='<div class="bracket-cells" style="--cols:'+colCodes.length+';--rows:'+rowCodes.length+'">';
+   rowCodes.forEach(rc=>colCodes.forEach(cc=>{
+    const cell=makeCell(rc,cc);
+    html+='<div class="bracket-cell '+(cell.val?'one-cell':'zero-cell')+'" title="'+escapeHtml(cellTitle(cell))+'"><div class="kmap-value">'+(cell.val?1:0)+'</div><span class="kmap-minterm">m'+cell.minterm+'</span></div>';
+   }));
+   html+='</div>';
+   if(rowVars.length===2)html+=renderRowRail(rowVars[1],1,'right');
+   html+='</div>'; // close .bracket-body
+   if(bottomVar){
+    const vi=colVars.indexOf(bottomVar), runs=runsWhereOne(colCodes,vi);
+    html+='<div class="bottom-rail-row" style="margin-left:'+(leftRailWidth+4)+'px;width:max-content"><div class="bottom-rail-track" style="--axis-count:'+colCodes.length+';width:max-content">';
+    runs.forEach(([a,b])=>{html+='<span class="col-bracket bottom" style="grid-column:'+(a+1)+'/'+(b+2)+'" title="'+escapeHtml(bottomVar+'=1')+'"><span class="col-bracket-label">'+escapeHtml(bottomVar)+'</span></span>';});
+    html+='</div></div>';
    }
-   kmapSummary.textContent=vars.length+' 个变量 · '+rowVars.length+' 个行变量 / '+colVars.length+' 个列变量 · 格雷码排列';
-   kmapSize.textContent=rowCodes.length+' × '+colCodes.length;
+   html+='</div>'; // close .kmap-bracket
+   // Explanation sits outside .kmap-bracket so min-width:max-content cannot stretch it.
+   html+='<div class="bracket-explanation">'+escapeHtml(t('bracketExplanation'))+'</div>';
+   kmap.innerHTML=html;
+  }else{
+   const rowLabel=rowVars.length?joinVars(rowVars):t('noneVars');
+   const colLabel=colVars.length?joinVars(colVars):t('noneVars');
+   let html='<div class="kmap-axes"><span>'+escapeHtml(t('colVarsLabel'))+'<b>'+escapeHtml(colLabel)+'</b></span><span>'+escapeHtml(t('rowVarsLabel'))+'<b>'+escapeHtml(rowLabel)+'</b></span></div>';
+   html+='<table class="kmap-table"><thead><tr><th class="axis-corner">'+escapeHtml(t('rowVarsShort'))+'<b>'+escapeHtml(rowLabel)+'</b><br>'+escapeHtml(t('colVarsShort'))+'<b>'+escapeHtml(colLabel)+'</b></th>'+colCodes.map(c=>'<th class="code-head"><span>'+escapeHtml(colLabel)+'</span><b>'+(c||'—')+'</b></th>').join('')+'</tr></thead><tbody>';
+   rowCodes.forEach(rc=>{
+    html+='<tr><th class="row-code"><span>'+escapeHtml(rowVars.length?rowLabel:t('singleRow'))+'</span><b>'+(rc||'—')+'</b></th>';
+    colCodes.forEach(cc=>{
+     const cell=makeCell(rc,cc);
+     html+='<td class="kmap-cell '+(cell.val?'one-cell':'zero-cell')+'" title="'+escapeHtml(cellTitle(cell))+'"><div class="kmap-value">'+(cell.val?1:0)+'</div><span class="kmap-minterm">m'+cell.minterm+'</span></td>';
+    });
+    html+='</tr>';
+   });
+   html+='</tbody></table>';
+   kmap.innerHTML=html;
+  }
+  kmapSummary.textContent=t('kmapSummary',{n:vars.length,r:rowVars.length,c:colVars.length});
+  kmapSize.textContent=rowCodes.length+' × '+colCodes.length;
  }
  function clearKmap(message){kmap.innerHTML='<div class="empty">'+escapeHtml(message)+'</div>';kmapSummary.textContent='';kmapSize.textContent='—';}
- function update(){const source=input.value.trim();if(!source){pretty.textContent='';status.textContent='请输入表达式。';status.className='status';table.innerHTML='<div class="empty">输入表达式以生成真值表</div>';summary.textContent='';rowcount.textContent='0 行';clearKmap('输入表达式以生成卡诺图');return;}
-   try{const {ast,vars}=parse(source);if(vars.length>12)throw new Error(`检测到 ${vars.length} 个变量，当前最多支持 12 个变量。`);pretty.innerHTML=render(ast);const rows=2**vars.length;summary.textContent=`变量：${vars.join('、')}；共 ${vars.length} 个变量`;rowcount.textContent=`${rows} 行`;status.textContent='表达式解析成功';status.className='status ok';
-   let html='<table><thead><tr>'+vars.map(v=>`<th>${escapeHtml(v)}</th>`).join('')+'<th>结果</th></tr></thead><tbody>';
-   for(let i=0;i<rows;i++){const env={};vars.forEach((v,j)=>{env[v]=!!((i>>(vars.length-1-j))&1)});const result=evaluate(ast,env);html+='<tr>'+vars.map(v=>`<td class="${env[v]?'one':'zero'}">${env[v]?1:0}</td>`).join('')+`<td class="${result?'one':'zero'}">${result?1:0}</td></tr>`;}html+='</tbody></table>';table.innerHTML=html;drawKmap(ast,vars);
-   }catch(e){pretty.textContent='无法转换';status.textContent=e.message;status.className='status error';summary.textContent='请检查表达式语法';rowcount.textContent='— 行';table.innerHTML=`<div class="empty">${escapeHtml(e.message)}</div>`;clearKmap('表达式有效后将显示卡诺图');}
+
+ /* ---------------- update & wiring ---------------- */
+ function update(){
+  const source=input.value.trim();
+  if(!source){
+   pretty.textContent='';statusEl.textContent=t('emptyPrompt');statusEl.className='status';
+   table.innerHTML='<div class="empty">'+escapeHtml(t('genTableFromExpr'))+'</div>';
+   summary.textContent=t('autoGen');rowcount.textContent=t('rowCount',{n:0});
+   clearKmap(t('genKmapFromExpr'));return;
+  }
+  try{
+   const {ast,vars}=parse(source);
+   if(vars.length>12)throw new Error(t('errTooManyVars',{n:vars.length}));
+   pretty.innerHTML=render(ast);
+   const rows=2**vars.length;
+   summary.textContent=vars.length?t('summaryVars',{vars:joinVars(vars),n:vars.length}):t('summaryNoVars');
+   rowcount.textContent=t('rowCount',{n:rows});
+   statusEl.textContent=t('parseOk');statusEl.className='status ok';
+   let html='<table><thead><tr>'+vars.map(v=>`<th>${escapeHtml(v)}</th>`).join('')+`<th>${escapeHtml(t('outputCol'))}</th></tr></thead><tbody>`;
+   for(let i=0;i<rows;i++){
+    const env=Object.create(null);
+    vars.forEach((v,j)=>{env[v]=!!((i>>(vars.length-1-j))&1);});
+    const result=evaluate(ast,env);
+    html+='<tr>'+vars.map(v=>`<td class="${env[v]?'one':'zero'}">${env[v]?1:0}</td>`).join('')+`<td class="${result?'one':'zero'}">${result?1:0}</td></tr>`;
+   }
+   html+='</tbody></table>';
+   table.innerHTML=html;
+   drawKmap(ast,vars);
+  }catch(e){
+   pretty.textContent=t('cannotConvert');statusEl.textContent=e.message;statusEl.className='status error';
+   summary.textContent=t('checkSyntax');rowcount.textContent=t('dashRows');
+   table.innerHTML=`<div class="empty">${escapeHtml(e.message)}</div>`;
+   clearKmap(t('kmapValidLater'));
+  }
  }
- const languageMode=document.getElementById('language-mode');
- const translations=[
- ['布尔表达式与真值表计算器','Boolean Expression & Truth Table Calculator'],['布尔表达式计算器','Boolean Expression Calculator'],['输入布尔表达式，实时转换为逻辑符号，并生成完整真值表。','Enter a Boolean expression to see its logic-symbol form and truth table update live.'],
- ['布尔表达式','Boolean expression'],['清空','Clear'],['变量可用 A、B、C…；也支持变量名如 A1、enable、carry_out，括号可改变优先级。','Use variables such as A, B, C, A1, enable, or carry_out. Parentheses control precedence.'],
- ['示例：AND / OR / NOT','Example: AND / OR / NOT'],['示例：符号混写','Example: mixed symbols'],['示例：NAND','Example: NAND'],['示例：XOR','Example: XOR'],['示例：⊕','Example: ⊕'],['符号化表达式（实时更新）','Symbolic expression (live preview)'],['无法转换','Unable to convert'],['请输入表达式。','Please enter an expression.'],['表达式解析成功','Expression parsed successfully'],['变量：','Variables: '],['；共 ','; total: '],[' 个变量',' variables'],[' 行',' rows'],['结果','Output'],['真值表','Truth table'],['输入表达式后自动生成','Generated automatically from the expression'],['输入表达式以生成真值表','Enter an expression to generate the truth table'],['卡诺图（Karnaugh Map）','Karnaugh map'],['根据当前表达式自动绘制','Generated automatically from the current expression'],['显示模式','Display mode'],['变量分组 + 格雷码表头','Variable groups + Gray-code headers'],['变量括号（参考图）','Variable brackets (diagram style)'],['输入表达式以生成卡诺图','Enter an expression to generate the Karnaugh map'],['行、列均按格雷码顺序排列；每格显示函数值和最小项编号。卡诺图最多显示 6 个变量。','Rows and columns use Gray-code order. Each cell shows the output and minterm index. Karnaugh maps support up to 6 variables.'],
- ['支持的运算符','Supported operators'],['：not、!、~、¬、单引号后缀（A\'）',' : not, !, ~, ¬, postfix apostrophe (A\')'],['：and、&、&&、*、·、∧',' : and, &, &&, *, ·, ∧'],['：or、|、||、+、∨',' : or, |, ||, +, ∨'],['：xor、^、⊕',' : xor, ^, ⊕'],['：nand、↑',' : nand, ↑'],['：nor、↓',' : nor, ↓'],['：xnor、↔、≡',' : xnor, ↔, ≡'],['：AB、A(B+C) 等相邻项会按 AND 处理',': Adjacent terms such as AB and A(B+C) imply AND'],['优先级：NOT → AND/NAND → XOR/XNOR → OR/NOR。大小写不敏感地识别 and/or/not 等运算文字；变量名称保留原样。真值表最多显示 12 个不同变量（4096 行），以避免浏览器卡顿。','Precedence: NOT → AND/NAND → XOR/XNOR → OR/NOR. Operator words are case-insensitive; variable names are preserved. The truth table supports up to 12 variables (4,096 rows).'],['纯本地网页 · 表达式不会上传到网络','Runs locally · expressions are never uploaded'],
- ['列变量：','Column variables: '],['；上方括号标出变量取 1 的列','; top brackets mark columns where a variable is 1'],['上方括号标出 A 等列变量取 1 的列，下方括号标出 B；左、右括号分别标出对应行变量取 1 的行。格子按格雷码排列，图的左右边缘与上下边缘也视为相邻。','Top brackets mark columns where variables such as A are 1; the bottom bracket marks B. Left/right brackets mark rows where the corresponding row variable is 1. Cells use Gray-code order; opposite edges are adjacent.'],['列变量（左 → 右）：','Column variables (left → right): '],['行变量（上 → 下）：','Row variables (top → bottom): '],['行变量：','Row variables: '],['列变量：','Column variables: '],['（无）','(none)'],['单行','Single row'],['最小项 m','Minterm m'],['；输出 ','; output '],['变量数超过卡诺图显示范围','Too many variables for the Karnaugh map'],['变量数超过卡诺图显示范围','Too many variables for the Karnaugh map'],['当前有 ','There are '],[' 个变量。为保证卡诺图清晰易读，卡诺图支持 1–6 个变量；真值表仍可正常显示。',' variables. For readability, the Karnaugh map supports 1–6 variables; the truth table is still available.'],['不支持','Not supported'],[' 个变量 · ',' variables · '],[' 个行变量 / ',' row variables / '],[' 个列变量 · 格雷码排列',' column variables · Gray-code order'],['输入表达式以生成卡诺图','Enter an expression to generate the Karnaugh map'],['表达式有效后将显示卡诺图','The Karnaugh map will appear when the expression is valid'],['检测到 ','Detected '],[' 个变量，当前最多支持 12 个变量。',' variables; up to 12 variables are supported.'],['请输入一个布尔表达式。','Please enter a Boolean expression.'],['表达式不完整：缺少操作数。','Incomplete expression: missing operand.'],['括号不匹配：缺少右括号 )。','Mismatched parentheses: missing closing ).'],['位置 ','Position '],[' 出现多余的右括号 )。',' has an extra closing parenthesis ).'],[' 缺少操作数。',' is missing an operand.'],[' 附近的表达式无法解析。',': unable to parse expression near this position.'],['无法识别字符“','Unrecognized character “'],['”（位置 ','” (position '],['）',' )'],['不支持的运算符：','Unsupported operator: '],['请检查表达式语法','Check the expression syntax'],['表达式有效后将显示卡诺图','The Karnaugh map will appear when the expression is valid'],['等待表达式…','Waiting for an expression…'],['— 行','— rows']
- ];
- function translateVisible(root=document.body){
-   const toEnglish=languageMode.value==='en';
-   const pairs=toEnglish?translations:translations.map(([zh,en])=>[en,zh]);
-   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-   for(const node of nodes){let value=node.nodeValue;for(const [from,to] of pairs)value=value.split(from).join(to);if(value!==node.nodeValue)node.nodeValue=value;}
-   if(root.querySelectorAll)root.querySelectorAll('[title],[aria-label],[placeholder]').forEach(el=>{for(const attr of ['title','aria-label','placeholder'])if(el.hasAttribute(attr)){let v=el.getAttribute(attr);for(const [from,to] of pairs)v=v.split(from).join(to);el.setAttribute(attr,v);}});
- }
- // Apply the selected language to both static and dynamically generated text.
+ // Apply the selected language to static UI (data-i18n) and re-render dynamic output.
+ // User data (variable names, expressions) is never passed through translation.
  function applyLanguage(){
-   const lang=languageMode.value;
-   document.documentElement.lang=lang==='zh'?'zh-CN':'en';
-   document.title=lang==='zh'?'布尔表达式与真值表计算器':'Boolean Expression & Truth Table Calculator';
-   translateVisible(document.body);
-   const label=languageMode.parentElement;
-   if(label && label.firstChild && label.firstChild.nodeType===Node.TEXT_NODE) label.firstChild.nodeValue=lang==='zh'?'语言 ':'Language ';
+  LANG=languageMode.value==='zh'?'zh':'en';
+  document.documentElement.lang=LANG==='zh'?'zh-CN':'en';
+  document.title=t('title');
+  const label=languageMode.parentElement;
+  if(label&&label.firstChild&&label.firstChild.nodeType===Node.TEXT_NODE)label.firstChild.nodeValue=t('languageLabel');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.getAttribute('data-i18n'));});
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',t(el.getAttribute('data-i18n-aria')));});
+  update();
  }
  languageMode.addEventListener('change',applyLanguage);
  const requestedLang=new URLSearchParams(location.search).get('lang');
  languageMode.value=requestedLang==='zh'?'zh':'en';
  applyLanguage();
- const observer=new MutationObserver(records=>{
-   for(const r of records){
-     if(r.type==='childList')r.addedNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE)translateVisible(n.parentElement||document.body);else if(n.nodeType===Node.ELEMENT_NODE)translateVisible(n);});
-     else if(r.type==='characterData')translateVisible(r.target.parentElement||document.body);
-   }
- });
- observer.observe(document.body,{subtree:true,childList:true,characterData:true});
-
- input.addEventListener('input',update);kmapMode.addEventListener('change',update);document.getElementById('clear').addEventListener('click',()=>{input.value='';input.focus();update();});document.querySelectorAll('.example').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.expr;update();input.focus();}));update();
+ input.addEventListener('input',update);
+ kmapMode.addEventListener('change',update);
+ document.getElementById('clear').addEventListener('click',()=>{input.value='';input.focus();update();});
+ document.querySelectorAll('.example').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.expr;update();input.focus();}));
+ update();
 })();
 </script>
 </body></html>
