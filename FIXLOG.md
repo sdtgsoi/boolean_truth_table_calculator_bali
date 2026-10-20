@@ -4,6 +4,7 @@
 - **对象**：`boolean_truth_table_calculator_bali.html`（单文件布尔表达式 / 真值表 / 卡诺图计算器）
 - **方式**：无头 Chrome 实测（DOM 快照 + 布局测量）定位问题 → 修复 → `tests/` 自动化回归
 - **回归结果**：`node tests/run.mjs` → **98 passed, 0 failed**（49 项断言 × 桌面 1280px / 移动 500px 两个视口）
+- **Live**：<https://sdtgsoi.github.io/boolean_truth_table_calculator_bali/>（GitHub Pages，2026-10-19 启用；仓库已设为公开）
 
 ---
 
