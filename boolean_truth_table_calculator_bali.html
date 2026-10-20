@@ -20,9 +20,9 @@
 <header class="hero"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap"><div><h1 data-i18n="appTitle">布尔表达式计算器</h1><p data-i18n="tagline">输入布尔表达式，实时转换为逻辑符号，并生成完整真值表。</p></div><label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px">Language <select id="language-mode" style="border:1px solid #c7d0df;border-radius:9px;background:white;padding:8px 10px;font:inherit"><option value="en" selected>English</option><option value="zh">中文</option></select></label></div></header>
 <section class="panel">
 <label for="expr" data-i18n="exprLabel">布尔表达式</label><div class="inputrow"><input id="expr" type="text" spellcheck="false" autocomplete="off" value="(A and B) or not C" aria-describedby="hint"><button id="clear" class="secondary" type="button" data-i18n="clearBtn">清空</button></div>
-<div id="hint" class="subtle" data-i18n="hint">变量可用 A、B、C…；也支持变量名如 A1、enable、carry_out，括号可改变优先级。</div>
+<div id="hint" class="subtle" data-i18n="hint">变量可用 A、B、C…，也支持 A1、enable、carry_out 及中文等 Unicode 变量名；括号可改变优先级。0 为假、1 为真。</div>
 <div class="examples"><button type="button" class="secondary example" data-expr="(A and B) or not C" data-i18n="example1">示例：AND / OR / NOT</button><button type="button" class="secondary example" data-expr="A xor B" data-i18n="example2">示例：XOR</button><button type="button" class="secondary example" data-expr="!(A * B) + C" data-i18n="example3">示例：符号混写</button><button type="button" class="secondary example" data-expr="A ⊕ B ⊕ C" data-i18n="example4">示例：⊕</button><button type="button" class="secondary example" data-expr="A nand B or C" data-i18n="example5">示例：NAND</button></div>
-<div class="subtle" style="margin-top:16px" data-i18n="prettyLabel">符号化表达式（实时更新）</div><div id="pretty" class="render" aria-live="polite">…</div><div id="status" class="status" aria-live="polite"></div>
+<div class="subtle" style="margin-top:16px" data-i18n="prettyLabel">符号化表达式（实时更新）</div><div id="pretty" class="render">…</div><div id="status" class="status" aria-live="polite"></div>
 </section>
 <section class="panel"><div class="toolbar"><div><strong data-i18n="truthTable">真值表</strong><div id="summary" class="subtle"></div></div><span id="rowcount" class="pill"></span></div><div id="table" class="tablewrap"></div></section>
 <section class="panel" id="kmap-panel"><div class="toolbar"><div><strong data-i18n="kmapTitle">卡诺图（Karnaugh Map）</strong><div id="kmap-summary" class="subtle"></div></div><div class="kmap-controls"><label for="kmap-mode" data-i18n="displayMode">显示模式</label><select id="kmap-mode" data-i18n-aria="kmapAria" aria-label="卡诺图显示模式"><option value="codes" data-i18n="modeCodes">变量分组 + 格雷码表头</option><option value="brackets" data-i18n="modeBrackets">变量括号（参考图）</option></select><span id="kmap-size" class="pill">—</span></div></div><div id="kmap" class="kmap-wrap"></div><div class="subtle kmap-note" data-i18n="kmapNote">行、列均按格雷码顺序排列；每格显示函数值和最小项编号（最小项按变量出现顺序编号）。卡诺图最多显示 6 个变量。</div></section>
@@ -43,10 +43,10 @@
   zh:{
    title:'布尔表达式与真值表计算器',appTitle:'布尔表达式计算器',tagline:'输入布尔表达式，实时转换为逻辑符号，并生成完整真值表。',
    languageLabel:'语言 ',exprLabel:'布尔表达式',clearBtn:'清空',
-   hint:'变量可用 A、B、C…；也支持变量名如 A1、enable、carry_out，括号可改变优先级。',
+   hint:'变量可用 A、B、C…，也支持 A1、enable、carry_out 及中文等 Unicode 变量名；括号可改变优先级。0 为假、1 为真。',
    example1:'示例：AND / OR / NOT',example2:'示例：XOR',example3:'示例：符号混写',example4:'示例：⊕',example5:'示例：NAND',
    prettyLabel:'符号化表达式（实时更新）',truthTable:'真值表',autoGen:'输入表达式后自动生成',
-   kmapTitle:'卡诺图（Karnaugh Map）',kmapAutoGen:'根据当前表达式自动绘制',displayMode:'显示模式',kmapAria:'卡诺图显示模式',
+   kmapTitle:'卡诺图（Karnaugh Map）',displayMode:'显示模式',kmapAria:'卡诺图显示模式',
    modeCodes:'变量分组 + 格雷码表头',modeBrackets:'变量括号（参考图）',
    kmapNote:'行、列均按格雷码顺序排列；每格显示函数值和最小项编号（最小项按变量出现顺序编号）。卡诺图最多显示 6 个变量。',
    opsTitle:'支持的运算符',
@@ -63,21 +63,25 @@
    kmapSummary:'{n} 个变量 · {r} 个行变量 / {c} 个列变量 · 格雷码排列',
    colVarsLabel:'列变量（左 → 右）：',rowVarsLabel:'行变量（上 → 下）：',rowVarsShort:'行变量：',colVarsShort:'列变量：',noneVars:'（无）',singleRow:'单行',
    bracketHeading:'列变量：{vars}；上方括号标出各列变量取 1 的列，最后一个列变量标在图下方',
+   bracketHeadingConst:'常量表达式：卡诺图只有一个格子，没有列变量需要标注',
    bracketExplanation:'上方、下方括号分别标出各列变量取 1 的列；左、右括号标出对应行变量取 1 的行。格子按格雷码排列，图的左右边缘与上下边缘也视为相邻。',
    mintermShort:'最小项 m{m}',outputShort:'输出 {v}',textSep:'；',
    errEmpty:'请输入一个布尔表达式。',errIncomplete:'表达式不完整：缺少操作数。',
    errMissingRparen:'括号不匹配：缺少右括号 )。',errExtraRparen:'位置 {pos} 出现多余的右括号 )。',
    errMissingOperand:'位置 {pos} 缺少操作数。',errUnparsable:'位置 {pos} 附近的表达式无法解析。',
    errBadChar:'无法识别字符“{c}”（位置 {pos}）',errImplication:'暂不支持蕴含运算符“{op}”（位置 {pos}）',
-   errTooManyVars:'检测到 {n} 个变量，当前最多支持 12 个变量。',errBadOp:'不支持的运算符：{op}'
+   errTooManyVars:'检测到 {n} 个变量，当前最多支持 12 个变量。',errBadOp:'不支持的运算符：{op}',
+   errTooLong:'表达式过长（{n} 个词法单元，上限 {max}）；请拆分为多个表达式。',
+   errTooComplex:'表达式过于复杂，无法计算；请减少嵌套或拆分表达式。',
+   errBadNumber:'无法识别的数字字面量“{raw}”（位置 {pos}）；只支持十进制整数（0 为假、非 0 为真）'
   },
   en:{
    title:'Boolean Expression & Truth Table Calculator',appTitle:'Boolean Expression Calculator',tagline:'Enter a Boolean expression to see its logic-symbol form and truth table update live.',
    languageLabel:'Language ',exprLabel:'Boolean expression',clearBtn:'Clear',
-   hint:'Use variables such as A, B, C, A1, enable, or carry_out. Parentheses control precedence.',
+   hint:'Use variables such as A, B, C, A1, enable, carry_out, or any Unicode letters (including CJK). Parentheses control precedence. Literals 0 (false) and 1 (true) are constants.',
    example1:'Example: AND / OR / NOT',example2:'Example: XOR',example3:'Example: mixed symbols',example4:'Example: ⊕',example5:'Example: NAND',
    prettyLabel:'Symbolic expression (live preview)',truthTable:'Truth table',autoGen:'Generated automatically from the expression',
-   kmapTitle:'Karnaugh map',kmapAutoGen:'Generated automatically from the current expression',displayMode:'Display mode',kmapAria:'Karnaugh map display mode',
+   kmapTitle:'Karnaugh map',displayMode:'Display mode',kmapAria:'Karnaugh map display mode',
    modeCodes:'Variable groups + Gray-code headers',modeBrackets:'Variable brackets (diagram style)',
    kmapNote:'Rows and columns use Gray-code order. Each cell shows the output and minterm index (variables are numbered in order of first appearance). Karnaugh maps support up to 6 variables.',
    opsTitle:'Supported operators',
@@ -94,13 +98,17 @@
    kmapSummary:'{n} variables · {r} row variables / {c} column variables · Gray-code order',
    colVarsLabel:'Column variables (left → right): ',rowVarsLabel:'Row variables (top → bottom): ',rowVarsShort:'Row variables: ',colVarsShort:'Column variables: ',noneVars:'(none)',singleRow:'Single row',
    bracketHeading:'Column variables: {vars}. Top brackets mark columns where each variable is 1; the last column variable is bracketed below the map',
+   bracketHeadingConst:'Constant expression: the map has a single cell and no column variables to bracket',
    bracketExplanation:'Top and bottom brackets mark columns where each column variable is 1; left and right brackets mark rows where the corresponding row variable is 1. Cells use Gray-code order; opposite edges are adjacent.',
    mintermShort:'Minterm m{m}',outputShort:'output {v}',textSep:'; ',
    errEmpty:'Please enter a Boolean expression.',errIncomplete:'Incomplete expression: missing operand.',
    errMissingRparen:'Mismatched parentheses: missing closing ).',errExtraRparen:'Position {pos} has an extra closing parenthesis ).',
    errMissingOperand:'Position {pos} is missing an operand.',errUnparsable:'Position {pos}: unable to parse expression near this position.',
    errBadChar:'Unrecognized character “{c}” (position {pos})',errImplication:'Implication operator “{op}” is not supported (position {pos})',
-   errTooManyVars:'Detected {n} variables; up to 12 variables are supported.',errBadOp:'Unsupported operator: {op}'
+   errTooManyVars:'Detected {n} variables; up to 12 variables are supported.',errBadOp:'Unsupported operator: {op}',
+   errTooLong:'Expression too long ({n} tokens; limit {max}). Please split it into smaller expressions.',
+   errTooComplex:'Expression is too complex to evaluate; reduce nesting or split it up.',
+   errBadNumber:'Unrecognized numeric literal “{raw}” (position {pos}); only decimal integers are supported (0 is false, non-zero is true)'
   }
  };
  let LANG='en';
@@ -116,19 +124,25 @@
  const wordOps=new Set(['and','or','not','xor','nand','nor','xnor']);
  function tokenize(source){
   const s=source, tokens=[]; let i=0;
+  const idStart=/[A-Za-z_$\p{L}]/u, idPart=/[A-Za-z0-9_$\p{L}]/u;
   while(i<s.length){
-   const c=s[i]; if(/\s/.test(c)){i++;continue;}
-   if(/[A-Za-z_$]/.test(c)){
-    let j=i+1; while(j<s.length&&/[A-Za-z0-9_$]/.test(s[j]))j++;
+   // Iterate by code point so astral characters (emoji) stay intact in messages.
+   const c=String.fromCodePoint(s.codePointAt(i)), clen=c.length;
+   if(/\s/.test(c)){i+=clen;continue;}
+   if(idStart.test(c)){
+    let j=i+clen;
+    while(j<s.length){const d=String.fromCodePoint(s.codePointAt(j));if(!idPart.test(d))break;j+=d.length;}
     const raw=s.slice(i,j), low=raw.toLowerCase();
     if(wordOps.has(low))tokens.push({type:'op',value:low,pos:i}); else tokens.push({type:'var',value:raw,pos:i});
     i=j; continue;
    }
    if(/[0-9]/.test(c)){
-    let j=i+1; while(j<s.length&&/[A-Za-z0-9_$]/.test(s[j]))j++;
+    let j=i+1;
+    while(j<s.length){const d=String.fromCodePoint(s.codePointAt(j));if(!idPart.test(d))break;j+=d.length;}
     const raw=s.slice(i,j);
-    if(/^\d+$/.test(raw))tokens.push({type:'const',value:parseInt(raw,10)!==0,raw,pos:i});
-    else tokens.push({type:'var',value:raw,pos:i});
+    // Decimal integer constants only; anything else starting with a digit is rejected.
+    if(!/^\d+$/.test(raw))throw new Error(t('errBadNumber',{raw,pos:i+1}));
+    tokens.push({type:'const',value:parseInt(raw,10)!==0,raw,pos:i});
     i=j; continue;
    }
    const two=s.slice(i,i+2);
@@ -136,7 +150,7 @@
    if(two==='&&'||two==='||'){tokens.push({type:'op',value:two,pos:i});i+=2;continue;}
    if(c==='→'||c==='⇒')throw new Error(t('errImplication',{op:c,pos:i+1}));
    const symbols={'!':'not','~':'not','¬':'not','*':'and','&':'and','·':'and','∧':'and','+':'or','|':'or','∨':'or','^':'xor','⊕':'xor','↑':'nand','↓':'nor','↔':'xnor','≡':'xnor','(':'(',')':')',"'":'postnot'};
-   if(Object.prototype.hasOwnProperty.call(symbols,c)){const v=symbols[c];tokens.push({type:v==='('?'lparen':v===')'?'rparen':v==='postnot'?'postnot':'op',value:v,pos:i});i++;continue;}
+   if(Object.prototype.hasOwnProperty.call(symbols,c)){const v=symbols[c];tokens.push({type:v==='('?'lparen':v===')'?'rparen':v==='postnot'?'postnot':'op',value:v,pos:i});i+=clen;continue;}
    throw new Error(t('errBadChar',{c,pos:i+1}));
   }
   // Insert implicit AND between an expression-ending and expression-starting token.
@@ -149,8 +163,10 @@
 
  /* ---------------- parser ---------------- */
  const prec={or:1,nor:1,'||':1,'|':1,'+':1,'∨':1,xor:2,'^':2,'⊕':2,xnor:2,and:3,nand:3,'&&':3,'&':3,'*':3,'·':3,not:4};
+ const MAX_TOKENS=2000; // guard against runaway recursion in render/evaluate on huge expressions
  function parse(source){
   const ts=tokenize(source); if(!ts.length)throw new Error(t('errEmpty'));
+  if(ts.length>MAX_TOKENS)throw new Error(t('errTooLong',{n:ts.length,max:MAX_TOKENS}));
   let p=0; const vars=[];
   const peek=()=>ts[p];
   function atom(){
@@ -206,8 +222,11 @@
    const childPrec=nodePrec(n), parentPrec=parent.prec;
    let need=childPrec<parentPrec;
    if(childPrec===parentPrec&&side==='right'&&n.type==='bin'){
+    // xnor ≡ xor with flipped output, so xor/xnor chains may drop parentheses;
+    // nand/nor are not associative and must keep them.
+    const childBase=({nand:'and',nor:'or',xnor:'xor'})[n.op]||n.op;
     const associative=['and','or','xor'];
-    need=!(associative.includes(parent.op)&&n.op===parent.op);
+    need=!(associative.includes(parent.op)&&childBase===parent.op&&!['nand','nor'].includes(n.op));
    }
    if(need)core=`<span class="paren">(</span>${core}<span class="paren">)</span>`;
   }
@@ -256,7 +275,8 @@
    const topVars=colVars.length>1?colVars.slice(0,-1):colVars;
    const bottomVar=colVars.length>1?colVars[colVars.length-1]:null;
    // Heading sits outside .kmap-bracket: its text must not stretch min-width:max-content.
-   let html='<div class="bracket-heading">'+escapeHtml(t('bracketHeading',{vars:joinVars(colVars)}))+'</div><div class="kmap-bracket"><div class="bracket-top">';
+   const headingText=vars.length?t('bracketHeading',{vars:joinVars(colVars)}):t('bracketHeadingConst');
+   let html='<div class="bracket-heading">'+escapeHtml(headingText)+'</div><div class="kmap-bracket"><div class="bracket-top">';
    topVars.forEach(v=>{
     const vi=colVars.indexOf(v), runs=runsWhereOne(colCodes,vi);
     html+='<div class="top-rail-row" style="--left-rail-width:'+leftRailWidth+'px;column-gap:'+(leftRailCount?4:0)+'px"><div></div><div class="top-rail-track" style="--axis-count:'+colCodes.length+'">';
@@ -339,9 +359,11 @@
    table.innerHTML=html;
    drawKmap(ast,vars);
   }catch(e){
-   pretty.textContent=t('cannotConvert');statusEl.textContent=e.message;statusEl.className='status error';
+   // Stack overflows on huge expressions get a translated message too.
+   const message=(e instanceof RangeError||/call stack/i.test(String(e&&e.message)))?t('errTooComplex'):e.message;
+   pretty.textContent=t('cannotConvert');statusEl.textContent=message;statusEl.className='status error';
    summary.textContent=t('checkSyntax');rowcount.textContent=t('dashRows');
-   table.innerHTML=`<div class="empty">${escapeHtml(e.message)}</div>`;
+   table.innerHTML=`<div class="empty">${escapeHtml(message)}</div>`;
    clearKmap(t('kmapValidLater'));
   }
  }
@@ -358,8 +380,8 @@
   update();
  }
  languageMode.addEventListener('change',applyLanguage);
- const requestedLang=new URLSearchParams(location.search).get('lang');
- languageMode.value=requestedLang==='zh'?'zh':'en';
+ const requestedLang=(new URLSearchParams(location.search).get('lang')||'').toLowerCase();
+ languageMode.value=(requestedLang==='zh'||requestedLang.startsWith('zh-'))?'zh':'en';
  applyLanguage();
  input.addEventListener('input',update);
  kmapMode.addEventListener('change',update);

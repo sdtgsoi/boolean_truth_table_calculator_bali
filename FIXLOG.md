@@ -58,16 +58,40 @@
 - `AB` 连写是一个变量名（多字母标识符是产品特性），需空格/括号/引号分隔才是隐式 AND。
 - 蕴含运算符不支持（报错明确；如需支持可加 `prec` 与求值分支）。
 - 最小项编号按变量**首次出现顺序**而非字母序（真值表列序同理）。
-- CSS 仍为压缩长行，本次只做定点修改，未做整体重构。
+- CSS 仍为压缩长行，本次只做定点修改，未做整体重构；存在 3 个重复 `@media(max-width:600px)` 块与 2 处 `!important`（由 `.kmap-table td` 高特异性所致），保留待日后整理。
+- `.over` 上划线的 NOT/NAND/NOR 标签挂在 `title`/`aria-label` 上，键盘不可达、部分读屏会忽略 `aria-label`（文本语义依赖原文表达式）。
+- 表达式词法单元上限 2000（防止递归爆栈），超出会给出已翻译的「表达式过长」提示。
+
+## 第二轮排查（独立 fresh-eyes 复查，2026-10-19）
+
+子代理对重写后的代码做只读复查 + 无头 Chrome 实测，共 9 项发现：修复 7 项、调整 1 项、保留 1 项。
+
+| # | 严重度 | 问题 | 处置 |
+|---|--------|------|------|
+| 1 | 中 | 超长表达式（约 6000 项）递归爆栈，状态栏显示原始英文 "Maximum call stack size exceeded"——新 i18n 体系唯一漏网文案 | ✅ 词法单元上限 2000（`errTooLong`）+ RangeError 兜底翻译（`errTooComplex`）；有测试 |
+| 2 | 低 | 数字字面量规则不一致：`10` 是常量，但 `0x10`、`1e5` 被当成变量名（上轮 #8 只修了一半） | ✅ 数字开头一律按十进制整数常量，非法格式明确报错（`errBadNumber`）；有测试 |
+| 3 | 低 | URL 参数大小写敏感：`?lang=ZH`、`?lang=zh-CN` 静默回退英文 | ✅ 小写归一化 + 接受 `zh-*` 前缀；有测试（第三个测试视口） |
+| 4 | 低 | 0 变量（纯常量）时括号模式标题出现空变量列表「列变量：；…」 | ✅ 常量表达式专用文案（`bracketHeadingConst`）；有测试 |
+| 5 | 低 | `😀` 等增补平面字符在报错里显示半截代理项 | ✅ tokenizer 按码点迭代；有测试 |
+| 6 | 低~中 | 中文变量名不支持（`甲 or 乙` 报无法识别字符） | ✅ 放开 Unicode 字母（`\p{L}`），中文等变量名可用；hint/README 更新；有测试 |
+| 7 | 低 | xor/xnor 混链渲染括号不对称（右嵌套加括号、左嵌套不加） | ✅ 统一省略：见下方更正；nand/nor 不可结合仍保留括号；有测试 |
+| 8 | 低 | 死键 `kmapAutoGen`；3 个重复 `@media` 块、2 处 `!important` | ✅ 死键已删；CSS 卫生项保留（见已知限制） |
+| 9 | 低 | a11y：`#pretty` 每次按键整块播报（读屏吵）；`.over` 的 aria-label 挂在 generic span 上部分读屏忽略 | 🔧 `#pretty` 移出 live region（保留 `#status` 的 polite 播报）；`.over` 标签局限见已知限制 |
+
+**更正**：本轮同时推翻了上文一处错误假设——「XNOR 不可结合」不成立。实测与推导一致：
+`A xnor (B xnor C)` 与 `(A xnor B) xnor C` 真值表完全相同（xnor = xor 翻转输出，两次翻转抵消，≡ A⊕B⊕C），
+因此渲染对 xnor 链省略括号是安全且对称的；真正不可结合的是 nand/nor（测试分别验证两种写法真值与括号）。
+
+复查同时复核上一轮全部修复项（#1–#13）：全部验证到位（上轮 #8 常量项即本表 #2 已补全）。
 
 ## 测试集
 
 ```
 tests/
-├── cases.js   # 49 项断言：解析/优先级、真值表、常量、__proto__ 等边界、
+├── cases.js   # 60 项断言：解析/优先级、真值表、常量与 Unicode 变量、__proto__ 等边界、
 │              #   报错文案、输出转义、卡诺图（格雷码/最小项/括号）、
-│              #   i18n 回归（含"脚本源码不被翻译改写"）、12 变量性能、移动端布局
-├── run.mjs    # 无头 Chrome 运行器（桌面 1280 + 移动 500 两个视口），失败时退出码 1
+│              #   i18n 回归（含"脚本源码不被翻译改写"）、超长表达式、12 变量性能、移动端布局
+├── run.mjs    # 无头 Chrome 运行器（桌面 1280、移动 500、?lang=ZH 归一化 三个运行），失败时退出码 1
 └── .build/    # 构建产物（已 gitignore）
 ```
 
@@ -80,7 +104,8 @@ node tests/run.mjs
 ## 本次改动的文件
 
 - `boolean_truth_table_calculator_bali.html` —— 修复主体（CSS 定点修改 + JS 翻译系统重写）
-- `tests/cases.js`、`tests/run.mjs`、`tests/.gitignore` —— 新增测试集
+- `tests/cases.js`、`tests/run.mjs`、`tests/.gitignore` —— 测试集
+- `index.html`、`README.md` —— GitHub Pages 入口与项目说明
 - `FIXLOG.md` —— 本日志
 
-（未做 git 提交，工作区可直接 review。）
+（已提交推送；Live：<https://sdtgsoi.github.io/boolean_truth_table_calculator_bali/>）

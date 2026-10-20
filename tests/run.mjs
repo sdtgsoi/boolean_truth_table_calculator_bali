@@ -57,7 +57,7 @@ function extractResults(dom, width) {
   return JSON.parse(decodeEntities(dom.slice(at + marker.length, end)));
 }
 
-function runView(chrome, page, width, height) {
+function runView(chrome, page, width, height, query) {
   const profile = mkdtempSync(path.join(tmpdir(), 'bool-test-chrome-'));
   try {
     const res = spawnSync(chrome, [
@@ -66,10 +66,10 @@ function runView(chrome, page, width, height) {
       '--virtual-time-budget=15000',
       '--window-size=' + width + ',' + height,
       '--force-device-scale-factor=1',
-      '--dump-dom', 'file://' + page,
+      '--dump-dom', 'file://' + page + (query || ''),
     ], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024, timeout: 90000 });
     const dom = res.stdout || '';
-    return extractResults(dom, width);
+    return extractResults(dom, width + (query ? ' ' + query : ''));
   } finally {
     rmSync(profile, { recursive: true, force: true });
   }
@@ -78,8 +78,8 @@ function runView(chrome, page, width, height) {
 const chrome = findChrome();
 const page = build();
 const reports = [];
-for (const [w, h] of [[1280, 1000], [500, 1000]]) {
-  reports.push(runView(chrome, page, w, h));
+for (const [w, h, q] of [[1280, 1000, ''], [500, 1000, ''], [1280, 1000, '?lang=ZH&probe=langcase']]) {
+  reports.push(runView(chrome, page, w, h, q));
 }
 
 let pass = 0, fail = 0;

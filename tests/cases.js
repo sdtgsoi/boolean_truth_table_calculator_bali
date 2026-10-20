@@ -19,6 +19,12 @@
   const appScriptText = () => document.querySelectorAll('script')[0].textContent;
 
   await sleep(80);
+  const probeRun = new URLSearchParams(location.search).get('probe') === 'langcase';
+  main: {
+  if (probeRun) {
+    check('URL ?lang=ZH normalizes to zh (regression)', document.documentElement.lang === 'zh-CN' && $('h1').textContent === '布尔表达式计算器', document.documentElement.lang + ' / ' + $('h1').textContent);
+    break main;
+  }
   setLang('en');
   await sleep(30);
 
@@ -155,6 +161,39 @@
   setLang('en');
   await sleep(30);
 
+  /* ---------- second-round review fixes ---------- */
+  setMode('codes');
+  setExpr('10');
+  check('numeric literal 10 is a constant', rows().length === 1 && rows()[0] === '1', rows().join('|'));
+  setExpr('0x10');
+  check('0x10 rejected as numeric literal (regression)', /数字字面量|numeric literal/.test($('#status').textContent), $('#status').textContent);
+  setExpr('1e5');
+  check('1e5 rejected as numeric literal (regression)', /数字字面量|numeric literal/.test($('#status').textContent), $('#status').textContent);
+  setExpr('😀 or A');
+  check('astral character reported intact (regression)', $('#status').textContent.includes('😀'), $('#status').textContent);
+  setExpr('甲 or 乙');
+  check('Unicode (CJK) variable names work (regression)',
+    eq(headers(), ['甲', '乙', 'Output']) && eq(rows(), ['0,0,0', '0,1,1', '1,0,1', '1,1,1']),
+    headers().join(',') + ' / ' + rows().join(' | '));
+  setExpr('A xnor (B xnor C)');
+  const xnorRight = $('#pretty').textContent;
+  setExpr('(A xnor B) xnor C');
+  check('xnor chain renders symmetrically (regression)', xnorRight === $('#pretty').textContent, xnorRight + ' vs ' + $('#pretty').textContent);
+  setExpr('A nand (B nand C)');
+  check('nand nesting keeps parentheses', $('#pretty').textContent.includes('('), $('#pretty').textContent);
+  setMode('brackets');
+  setExpr('1');
+  check('constant-only brackets heading is complete (regression)',
+    /常量表达式|Constant expression/.test($('#kmap .bracket-heading').textContent),
+    $('#kmap .bracket-heading').textContent);
+  setMode('codes');
+  check('#pretty is not a live region (a11y noise reduced)', $('#pretty').getAttribute('aria-live') === null && $('#status').getAttribute('aria-live') === 'polite', '');
+  setExpr('A or '.repeat(2500) + 'A');
+  check('over-long expression gets a friendly translated error (regression)',
+    /表达式过长|Expression too long/.test($('#status').textContent) && !/call stack/i.test($('#status').textContent),
+    $('#status').textContent.slice(0, 90));
+  setExpr('A or B');
+
   /* ---------- perf sanity: 12 variables = 4096 rows ---------- */
   const expr12 = 'A1 or A2 or A3 or A4 or A5 or A6 or A7 or A8 or A9 or A10 or A11 or A12';
   const t0 = performance.now();
@@ -176,6 +215,7 @@
     check('mobile: explanation no longer forces 700px overflow (regression)', wrap.scrollWidth <= wrap.clientWidth + 2, 'scroll=' + wrap.scrollWidth + ' client=' + wrap.clientWidth);
   }
 
+  } // end main
   } catch (e) {
     results.push({ name: 'harness error', pass: false, detail: String((e && e.stack) || e) });
   }
